@@ -1,10 +1,11 @@
 import React from "react";
+import SignUpForm from "../components/SignUpForm";
 
 export default function Login(){
 
     return(
     <>
-        <h1>Login Page</h1>
+        <SignUpForm/>
     </>
     )
 }
