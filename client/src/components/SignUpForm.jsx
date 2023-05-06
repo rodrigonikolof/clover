@@ -48,7 +48,7 @@ export default function SignUpForm(){
 
     return(
         <>
-            <Container>
+            
                 <Typography 
                     variant="h5" 
                     component="h2" 
@@ -116,7 +116,7 @@ export default function SignUpForm(){
 
        
 
-        </Container>
+        
         </>
     )
 }
