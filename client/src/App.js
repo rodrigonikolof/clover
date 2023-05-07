@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Navbar from './components/Navbar';
 
 export const Context = React.createContext();
 
@@ -15,6 +16,7 @@ const [token, setToken] = useState(null);
 
   return (
   <>
+    <Navbar/>
     <Context.Provider value={[user, setUser,token, setToken ]}>
       <Routes>
         <Route path="/" element={<Home/>}/>
