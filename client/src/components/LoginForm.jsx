@@ -1,7 +1,8 @@
 import React from "react";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {Typography, Button, Container, TextField, MenuItem, FormControl, InputLabel, Select} from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Context } from "../App";
 
 export default function LoginForm(){
 
@@ -10,6 +11,9 @@ export default function LoginForm(){
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
     const [errorFromServer, setErrorFromServer] = useState([])
+
+    const [user, setUser, token, setToken] = useContext(Context);
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -24,7 +28,10 @@ export default function LoginForm(){
                 .then((r)=>{
                     if(r.ok){
                         // r.json().then((user)=>{onLogin(user)})
-                        r.json().then(data=>console.log(data))
+                        r.json().then(data=>{
+                            setUser(data.user);
+                            setToken(data.jwt);
+                        })
                     } else {
                         r.json().then((err)=> setErrorFromServer(err.errors));
                     }
@@ -32,7 +39,6 @@ export default function LoginForm(){
             
         }
     }
-
 
     return(
         <>
