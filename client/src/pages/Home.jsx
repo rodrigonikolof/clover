@@ -8,7 +8,7 @@ const [user, setUser, token, setToken] = useContext(Context);
 
 
 useEffect(()=>{
-    fetch('/api/v1/profile',{
+    fetch('/api/v1/clients',{
         method: 'GET',
         headers: {
             Authorization : `Bearer ${token}`
