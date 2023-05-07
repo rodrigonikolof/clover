@@ -6,6 +6,12 @@ class Api::V1::ClientsController < ApplicationController
             render json: @client, status: :created
         else
             render json: {error: 'Failed to create client'}
+        end
+    end
+
+    def index
+        @clients = Client.where(user_id: current_user.id)
+        render json: @clients, status: :ok
     end
 
 

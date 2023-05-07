@@ -1,6 +1,20 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../App";
 
 export default function Home(){
+
+const [user, setUser, token, setToken] = useContext(Context);
+
+
+
+useEffect(()=>{
+    fetch('/api/v1/profile',{
+        method: 'GET',
+        headers: {
+            Authorization : `Bearer ${token}`
+        }
+    }).then(r => r.json()).then(data => console.log(data))
+},[])
 
     return(
         <>
