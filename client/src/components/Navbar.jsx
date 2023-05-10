@@ -47,10 +47,11 @@ return(
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
-            component="a"
-            href="/"
+            component="div"
+            // href="/"
+            onClick={()=>navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -59,6 +60,7 @@ return(
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer'
             }}
           >
             CLOVER
@@ -108,8 +110,8 @@ return(
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component="div"
+            onClick={()=>navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -119,6 +121,7 @@ return(
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer'
             }}
           >
             CLOVER
