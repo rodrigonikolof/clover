@@ -16,6 +16,30 @@ function App() {
 const [user, setUser] = useState(null);
 const [token, setToken] = useState(null);
 
+useEffect(()=>{
+  const savedToken = localStorage.getItem("clover-jwt")
+  setToken(savedToken)
+  console.log('useEffect ran')
+  if (token){
+    fetch('/api/v1/profile', {
+      method: "GET",
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then(r => r.json())
+    .then(data => setUser(data))
+  }
+
+},[])
+
+// useEffect(()=>{
+//   fetch('/profile', {
+//     method: "GET",
+//     headers: {Authorization: `Bearer ${token}`}
+//   })
+//   .then(r => r.json())
+//   .then(data => setUser(data))
+// },[])
+
   if (!user) return <Context.Provider value={[user, setUser,token, setToken ]}><Login/></Context.Provider>
 
   return (
