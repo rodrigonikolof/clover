@@ -1,19 +1,23 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Clients(){
     const [user, setUser, token, setToken] = useContext(Context);
+    const [clients, setClients] = useState([])
 
     useEffect(()=>{
+        
         fetch('/api/v1/clients',{
             method: 'GET',
             headers: {
                 Authorization : `Bearer ${token}`
             }
-        }).then(r => r.json()).then(data => console.log(data))
+        }).then(r => r.json()).then(data => setClients(data))
+        
     },[])
-
+    console.log(clients)
 
 
 return(
@@ -30,7 +34,18 @@ return(
                     Clients
                 </Typography>
         </Box>
-
+        <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
+            <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex', background: 'blue' } }}>1</Box>
+            <Box sx={{mr:1}}>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    endIcon={<AddIcon/>}
+                    >
+                    New Client
+                </Button>
+            </Box>
+        </Box>
         
     </>
 )
