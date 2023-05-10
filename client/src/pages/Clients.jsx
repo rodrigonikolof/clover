@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Grid, Paper } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
 export default function Clients(){
@@ -35,7 +35,17 @@ return(
                 </Typography>
         </Box>
         <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
-            <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex', background: 'blue' } }}>1</Box>
+            <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex'} }}>
+                {/* <Grid container spacing={3}>
+                    {clients.map((client)=>{
+                       return(
+                            <Grid item xs={12} md={6} key={client.id}>
+                                <Paper>{client.client_name}</Paper>
+                            </Grid>
+                       )     
+                    })}
+                </Grid> */}
+            </Box>
             <Box sx={{mr:1}}>
                 <Button
                     color="primary"
@@ -45,6 +55,17 @@ return(
                     New Client
                 </Button>
             </Box>
+        </Box>
+        <Box sx={{display:'flex', justifyContent: 'center', mt:3, mr:6, ml:6}}>
+        <Grid container spacing={3}>
+                    {clients.map((client)=>{
+                       return(
+                            <Grid item xs={12} md={6} key={client.id}>
+                                <Paper>{client.client_name}</Paper>
+                            </Grid>
+                       )     
+                    })}
+                </Grid>
         </Box>
         
     </>
