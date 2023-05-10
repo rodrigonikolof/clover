@@ -9,7 +9,7 @@ export default function Clients(){
 
     useEffect(()=>{
         
-        fetch('/api/v1/clients',{
+       fetch('/api/v1/clients',{
             method: 'GET',
             headers: {
                 Authorization : `Bearer ${token}`
