@@ -34,19 +34,30 @@ return(
                     Clients
                 </Typography>
         </Box>
+
         <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
-            <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex'} }}>
-                {/* <Grid container spacing={3}>
-                    {clients.map((client)=>{
-                       return(
-                            <Grid item xs={12} md={6} key={client.id}>
-                                <Paper>{client.client_name}</Paper>
-                            </Grid>
-                       )     
-                    })}
-                </Grid> */}
+
+            <Box sx={{width: 200, display: { xs: 'none', md: 'flex'}, background: 'red', display:'flex', justifyContent: 'center' }}>
+                1
             </Box>
-            <Box sx={{mr:1}}>
+
+            <Box sx={{display:'flex', justifyContent: 'center', mt:3, mr:6, ml:6, flexGrow: 3}}>
+                <Grid container spacing={3}>
+                            {clients.map((client)=>{
+                            return(
+                                    <Grid item xs={12} md={4} key={client.id}>
+                                        <Paper
+                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px'}} 
+                                        >
+                                            {client.client_name}
+                                        </Paper>
+                                    </Grid>
+                            )     
+                            })}
+                </Grid>
+            </Box>
+
+            <Box sx={{ background:'blue', display:'flex', justifyContent: 'center', width: 200, height: 40}}>
                 <Button
                     color="primary"
                     variant="contained"
@@ -55,18 +66,9 @@ return(
                     New Client
                 </Button>
             </Box>
+
         </Box>
-        <Box sx={{display:'flex', justifyContent: 'center', mt:3, mr:6, ml:6}}>
-        <Grid container spacing={3}>
-                    {clients.map((client)=>{
-                       return(
-                            <Grid item xs={12} md={6} key={client.id}>
-                                <Paper>{client.client_name}</Paper>
-                            </Grid>
-                       )     
-                    })}
-                </Grid>
-        </Box>
+        
         
     </>
 )
