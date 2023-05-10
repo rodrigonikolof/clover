@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect, useRef} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
@@ -15,18 +15,22 @@ function App() {
 
 const [user, setUser] = useState(null);
 const [token, setToken] = useState(null);
+const count = useRef(0)
 
 useEffect(()=>{
   const savedToken = localStorage.getItem("clover-jwt")
   setToken(savedToken)
-  console.log('useEffect ran')
-  if (token){
+  console.log('running')
+  
+  if (!token){
     fetch('/api/v1/profile', {
       method: "GET",
       headers: {Authorization: `Bearer ${token}`}
     })
     .then(r => r.json())
     .then(data => setUser(data))
+    .then(()=>count.current = count.current + 1)
+    .then(()=>console.log(`fired ${count.current} times`))
   }
 
 },[])

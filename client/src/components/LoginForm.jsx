@@ -32,6 +32,7 @@ export default function LoginForm(){
                             setUser(data.user);
                             setToken(data.jwt);
                             localStorage.setItem("clover-jwt", data.jwt)
+                            console.log(data.jwt)
                         })
                     } else {
                         r.json().then((err)=> setErrorFromServer(err.errors));
