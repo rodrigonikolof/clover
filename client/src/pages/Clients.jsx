@@ -2,13 +2,21 @@ import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
 import { Box, Typography, Button, Grid, Paper } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import NewClientModal from "../components/NewClientModal";
 
 export default function Clients(){
     const [user, setUser, token, setToken] = useContext(Context);
     const [clients, setClients] = useState([])
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-    useEffect(()=>{
-        
+
+    useEffect(()=>{ 
        fetch('/api/v1/clients',{
             method: 'GET',
             headers: {
@@ -17,8 +25,9 @@ export default function Clients(){
         }).then(r => r.json()).then(data => setClients(data))
         
     },[])
-    console.log(clients)
+   
 
+    
 
 return(
     <>
@@ -41,7 +50,7 @@ return(
                 1
             </Box>
 
-            <Box sx={{display:'flex', justifyContent: 'center', mt:3, mr:6, ml:6, flexGrow: 3}}>
+            <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, flexGrow: 3}}>
                 <Grid container spacing={3}>
                             {clients.map((client)=>{
                             return(
@@ -62,6 +71,7 @@ return(
                     color="primary"
                     variant="contained"
                     endIcon={<AddIcon/>}
+                    onClick={handleOpen}
                     >
                     New Client
                 </Button>
@@ -69,7 +79,7 @@ return(
 
         </Box>
         
-        
+        <NewClientModal handleClose={handleClose} handleOpen={handleOpen} open={open}/>
     </>
 )
 
