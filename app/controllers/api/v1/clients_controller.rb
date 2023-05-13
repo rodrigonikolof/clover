@@ -2,6 +2,7 @@ class Api::V1::ClientsController < ApplicationController
 
     def create
         @client = Client.create(client_params)
+        
         if @client.valid?
             render json: @client, status: :created
         else

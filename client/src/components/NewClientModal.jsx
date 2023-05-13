@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Box, Modal, Button, Typography, TextField} from "@mui/material"
+import { Context } from "../App";
 
 const style = {
     position: 'absolute',
@@ -16,6 +17,7 @@ const style = {
   };
 
 export default function NewClientModal({handleClose, handleOpen, open}){
+    const [user, setUser, token, setToken] = useContext(Context);
     const [newClient, setNewClient] = useState('')
     const [newClientError, setNewClientError] = useState(false)
 
@@ -24,7 +26,18 @@ export default function NewClientModal({handleClose, handleOpen, open}){
         e.preventDefault()
         newClient? setNewClientError(false) : setNewClientError(true)
         if(newClient){
-            console.log(newClient)
+            fetch('/api/v1/clients', {
+                method: "POST",
+                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    client_name: newClient,
+                    user_id : user.user.id
+                })
+              }).then((r)=>{
+                    if(r.ok){
+                        r.json().then(data => console.log(data))
+                    }
+              })
         }
     }
 
