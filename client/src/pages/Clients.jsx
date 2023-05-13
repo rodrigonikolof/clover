@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
+import { Navigate } from "react-router-dom";
 import { Context } from "../App";
 import { Box, Typography, Button, Grid, Paper } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
@@ -77,7 +78,8 @@ return(
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
-                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px'}} 
+                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer'}} 
+                                            onClick={()=>console.log(client.id)}
                                         >
                                             {client.client_name}
                                         </Paper>
