@@ -8,6 +8,8 @@ export default function Clients(){
     const [user, setUser, token, setToken] = useContext(Context);
     const [clients, setClients] = useState([])
     const [open, setOpen] = useState(false);
+    const [newClient, setNewClient] = useState('')
+    const [newClientError, setNewClientError] = useState(false)
     const handleOpen = () => {
         setOpen(true);
     };
@@ -26,8 +28,26 @@ export default function Clients(){
         
     },[])
    
-
-    
+    function handleSubmit(e){
+        e.preventDefault()
+        newClient? setNewClientError(false) : setNewClientError(true)
+        if(newClient){
+            fetch('/api/v1/clients', {
+                method: "POST",
+                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    client_name: newClient,
+                    user_id : user.user.id
+                })
+              }).then((r)=>{
+                    if(r.ok){
+                        r.json().then(data => setClients([...clients, data]))
+                        .then(()=>setOpen(false))
+                    }
+              })
+        }
+    }
+    console.log(clients)
 
 return(
     <>
@@ -52,7 +72,8 @@ return(
 
             <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, flexGrow: 3}}>
                 <Grid container spacing={3}>
-                            {clients.map((client)=>{
+                    {clients ? 
+                            clients.map((client)=>{
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
@@ -62,7 +83,8 @@ return(
                                         </Paper>
                                     </Grid>
                             )     
-                            })}
+                            }): null
+                        }
                 </Grid>
             </Box>
 
@@ -79,7 +101,13 @@ return(
 
         </Box>
         
-        <NewClientModal handleClose={handleClose} handleOpen={handleOpen} open={open}/>
+        <NewClientModal 
+            handleClose={handleClose} 
+            open={open}
+            handleSubmit={handleSubmit}
+            setNewClient={setNewClient}
+            newClientError={newClientError}
+            />
     </>
 )
 

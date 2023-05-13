@@ -16,61 +16,39 @@ const style = {
     pb: 3,
   };
 
-export default function NewClientModal({handleClose, handleOpen, open}){
+export default function NewClientModal({handleClose, open, handleSubmit, setNewClient, newClientError}){
     const [user, setUser, token, setToken] = useContext(Context);
-    const [newClient, setNewClient] = useState('')
-    const [newClientError, setNewClientError] = useState(false)
-
-
-    function handleSubmit(e){
-        e.preventDefault()
-        newClient? setNewClientError(false) : setNewClientError(true)
-        if(newClient){
-            fetch('/api/v1/clients', {
-                method: "POST",
-                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
-                body: JSON.stringify({
-                    client_name: newClient,
-                    user_id : user.user.id
-                })
-              }).then((r)=>{
-                    if(r.ok){
-                        r.json().then(data => console.log(data))
-                    }
-              })
-        }
-    }
 
     return(
         <>
-        <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
-      >
-        <Box sx={{ ...style, maxWidth: 400 }}>
-          <Typography variant="h6" component="h6">Create New Client</Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField 
-                onChange={(e)=>{setNewClient(e.target.value)}}
-                sx={{height: 5, mt:1, mb:1}}   
-                fullWidth 
-                error={newClientError}
-                label="Name"
-            />
-            <Button type="submit"
-                    color="primary"
-                    variant="contained"
-                    sx={{mt:6}}
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
             >
-                Create
-            </Button>
-          </form>
-          
-          
-        </Box>
-      </Modal>
+                <Box sx={{ ...style, maxWidth: 400 }}>
+                <Typography variant="h6" component="h6">Create New Client</Typography>
+                <form onSubmit={handleSubmit}>
+                    <TextField 
+                        onChange={(e)=>{setNewClient(e.target.value)}}
+                        sx={{height: 5, mt:1, mb:1}}   
+                        fullWidth 
+                        error={newClientError}
+                        label="Name"
+                    />
+                    <Button type="submit"
+                            color="primary"
+                            variant="contained"
+                            sx={{mt:6}}
+                    >
+                        Create
+                    </Button>
+                </form>
+                
+                
+                </Box>
+            </Modal>
         </>
     )
 
