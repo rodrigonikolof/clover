@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../App";
 import { Box, Typography, Button, Grid, Paper } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
@@ -11,6 +11,7 @@ export default function Clients(){
     const [open, setOpen] = useState(false);
     const [newClient, setNewClient] = useState('')
     const [newClientError, setNewClientError] = useState(false)
+    const navigate = useNavigate();
     const handleOpen = () => {
         setOpen(true);
     };
@@ -79,9 +80,9 @@ return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
                                             sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer'}} 
-                                            onClick={()=>console.log(client.id)}
+                                            // onClick={()=>navigate('/client-plan', )}
                                         >
-                                            {client.client_name}
+                                          <Link to={`${client.id}`}>{client.client_name}</Link>  
                                         </Paper>
                                     </Grid>
                             )     

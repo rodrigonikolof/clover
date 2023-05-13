@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import Interventions from './pages/Interventions';
 import Clients from './pages/Clients';
 import Modalities from './pages/Modalities';
+import SingleClient from './pages/SingleClient';
+
 
 
 export const Context = React.createContext();
@@ -53,6 +55,7 @@ console.log('this is the user ', user)
         <Route path='/clients' element={<Clients/>}/>
         <Route path='/modalities' element={<Modalities/>}/>
         <Route path='/interventions' element={<Interventions/>}/>
+        <Route path='/clients/:id' element={<SingleClient/>}/>
       </Routes>
     </Context.Provider>
   </>
