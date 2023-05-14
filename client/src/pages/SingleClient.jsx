@@ -21,7 +21,21 @@ export default function SingleClient(){
 
     return(
         <>
-            <h2>Single Client Page </h2>
+        {client ? 
+            <Box
+            sx={{display: 'flex', justifyContent: 'center', mt: 3}}
+            >
+                <Typography
+                        variant="h5" 
+                        component="h2" 
+                        color="textSecondary"
+                        gutterBottom
+                    >
+                        Client Page - {client.client_name}
+                    </Typography>
+            </Box>
+
+            : null }
         </>
     )
 }
