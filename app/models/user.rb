@@ -5,4 +5,5 @@ class User < ApplicationRecord
     validates :password, length: {minimum: 6}
     
     has_many :clients
+    has_many :interventions
 end
