@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       
       resources :clients, only: [:index, :create, :show]
+      resources :interventions, only: [:index]
 
     end
   end
