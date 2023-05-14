@@ -15,6 +15,15 @@ class Api::V1::ClientsController < ApplicationController
         render json: @clients, status: :ok
     end
 
+    def show
+        @client = Client.find(params[:id])
+
+        if @client && @client[:user_id] == current_user.id
+            render json: @client, status: :ok
+        else
+            render json: {error: 'Failed to fetch client'}
+        end
+    end
 
     private
 
