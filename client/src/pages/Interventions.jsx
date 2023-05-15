@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
+import InterventionCard from "../components/InterventionCard";
 
 export default function Interventions(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -29,6 +30,23 @@ return(
                 >
                     Interventions
                 </Typography>
+            </Box>
+            <Box
+            sx={{display: 'flex', justifyContent: 'center', mt: 3}}
+            >
+                <Box sx={{ml: 6, mr: 6}} >
+                    <Grid container spacing={3}>
+                        {interventions ? 
+                            interventions.map((intervention)=>{
+                            return   (
+                                <Grid item xs={12} md={6}  key={intervention.id}>
+                                    <InterventionCard intervention={intervention} key={intervention.id}/>
+                                </Grid>
+                            )
+                            })
+                        : null }
+                    </Grid>
+                </Box>
             </Box>
     </>
 )
