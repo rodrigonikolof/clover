@@ -39,7 +39,7 @@ return(
                         {interventions ? 
                             interventions.map((intervention)=>{
                             return   (
-                                <Grid item xs={12} md={6}  key={intervention.id}>
+                                <Grid item xs={12} md={12}  key={intervention.id}>
                                     <InterventionCard intervention={intervention} key={intervention.id}/>
                                 </Grid>
                             )
