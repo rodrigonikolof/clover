@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../App";
 import { Box, Typography, Button, Grid, Paper, Tooltip, IconButton, TextField } from "@mui/material";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -7,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function InterventionCard({intervention}){
     const [showUpdate, setShowUpdate] = useState(false);
     const [interventionName, setInterventionName] = useState('');
+    const [user, setUser, token, setToken] = useContext(Context);
 
     useEffect(()=>{
         setInterventionName(intervention.intervention_name)
@@ -21,7 +23,15 @@ export default function InterventionCard({intervention}){
         if (interventionName === intervention.intervention_name || interventionName === "")
             toggleShowUpdate()
         else
-            console.log('it worked')
+        fetch(`/api/v1/interventions/${intervention.id}`,{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                intervention_name : interventionName, 
+            })
+        })
+        toggleShowUpdate()
+        // .then(res => res.json()).then(data => console.log(data))
 
     }
 
@@ -38,7 +48,8 @@ export default function InterventionCard({intervention}){
                         <TextField
                             onChange={(e)=>{setInterventionName(e.target.value)}}
                             defaultValue={interventionName}
-                            sx={{maxHeight:-1}}
+                            sx={{maxHeight:-1, mr: 1}}
+                            variant="standard"
                         />
                         <Button
                         type="submit"
