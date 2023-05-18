@@ -5,7 +5,7 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-export default function InterventionCard({intervention}){
+export default function InterventionCard({intervention, handleDelete}){
     const [showUpdate, setShowUpdate] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [interventionName, setInterventionName] = useState('');
@@ -22,7 +22,7 @@ export default function InterventionCard({intervention}){
       };
     
       const open = Boolean(anchorEl);
-      const id = open ? 'simple-popover' : undefined;
+      const popoverID = open ? 'simple-popover' : undefined;
 
     useEffect(()=>{
         setInterventionName(intervention.intervention_name)
@@ -46,8 +46,9 @@ export default function InterventionCard({intervention}){
         })
         toggleShowUpdate()
         // .then(res => res.json()).then(data => console.log(data))
-
     }
+
+    
 
     
 
@@ -87,12 +88,12 @@ export default function InterventionCard({intervention}){
                     </Tooltip>
                     <Tooltip title="Delete">
                         
-                            <IconButton onClick={handleClick} aria-describedby={id}>
+                            <IconButton onClick={handleClick} aria-describedby={popoverID}>
                                 <DeleteIcon/>
                             </IconButton>
                     </Tooltip> 
                     <Popover
-                            id={id}
+                            id={popoverID}
                             open={open}
                             anchorEl={anchorEl}
                             onClose={handleClose}
@@ -112,6 +113,7 @@ export default function InterventionCard({intervention}){
                                         variant="contained"
                                         sx={{mt:0.2, ml: 1.2}}
                                         color="error"
+                                        onClick={()=>handleDelete(intervention.id)}
                                         >
                                             Delete
                                         </Button>

@@ -17,6 +17,14 @@ export default function Interventions(){
     },[])
     console.log(interventions)
 
+    const handleDelete = (id)=>{
+        fetch(`/api/v1/interventions/${id}`,{
+            method: 'DELETE',
+            headers: {Authorization : `Bearer ${token}`}
+        })
+        setInterventions(interventions.filter(intervention => intervention.id != id))
+    }
+
 return(
     <>
         <Box
@@ -40,7 +48,7 @@ return(
                             interventions.map((intervention)=>{
                             return   (
                                 <Grid item xs={12} md={12}  key={intervention.id}>
-                                    <InterventionCard intervention={intervention} key={intervention.id}/>
+                                    <InterventionCard intervention={intervention} key={intervention.id} handleDelete={handleDelete}/>
                                 </Grid>
                             )
                             })

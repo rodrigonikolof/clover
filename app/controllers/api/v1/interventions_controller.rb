@@ -20,8 +20,7 @@ class Api::V1::InterventionsController < ApplicationController
 
         if @intervention && @intervention[:user_id] == current_user.id
             @intervention.destroy
-            head :no_content
-            render json: {ok: 'Intervention updated'}, status: :ok
+            render json: {ok: 'Intervention deleted'}, status: :ok
         else
             render json: {error: 'Unable to delete intervention'}
         end
