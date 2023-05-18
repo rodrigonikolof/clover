@@ -36,7 +36,7 @@ export default function InterventionCard({intervention, handleDelete}){
         e.preventDefault()
         if (interventionName === intervention.intervention_name || interventionName === "")
             toggleShowUpdate()
-        else
+        else if (intervention.id){
         fetch(`/api/v1/interventions/${intervention.id}`,{
             method: 'PATCH',
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
@@ -44,8 +44,12 @@ export default function InterventionCard({intervention, handleDelete}){
                 intervention_name : interventionName, 
             })
         })
-        toggleShowUpdate()
-        // .then(res => res.json()).then(data => console.log(data))
+        toggleShowUpdate()}
+        else if (!intervention.id){
+            console.log('there is no ID')
+        }
+        
+        
     }
 
     

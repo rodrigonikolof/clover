@@ -16,7 +16,7 @@ export default function Interventions(){
             }
         }).then(r => r.json()).then(data => setInterventions(data))
     },[])
-    console.log(interventions)
+  
 
     const handleDelete = (id)=>{
         fetch(`/api/v1/interventions/${id}`,{
@@ -25,6 +25,13 @@ export default function Interventions(){
         })
         setInterventions(interventions.filter(intervention => intervention.id != id))
     }
+
+    const handleCreate = ()=>{
+       const newIntervention = {intervention_id:null, intervention_name: "New Intervention", user_id: user.id}
+        setInterventions([...interventions,newIntervention])
+    }
+
+    console.log(interventions)
 
 return(
     <>
@@ -46,14 +53,15 @@ return(
                     variant="contained"
                     endIcon={<AddIcon/>}
                     sx={{mr:{md:6}}}
+                    onClick={handleCreate}
                     >
-                    New Client
+                    Create  
                 </Button>
             </Box>
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
-                <Box sx={{ml: 6, mr: 6}} >
+                <Box sx={{ml: 6, mr: 6, mb: 6}} >
                     <Grid container spacing={3}>
                         {interventions ? 
                             interventions.map((intervention)=>{
