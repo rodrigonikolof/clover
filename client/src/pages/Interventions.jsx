@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button } from "@mui/material";
 import InterventionCard from "../components/InterventionCard";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Interventions(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -38,6 +39,16 @@ return(
                 >
                     Interventions
                 </Typography>
+            </Box>
+            <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'right'}, mt: 3}}>
+            <Button
+                    color="primary"
+                    variant="contained"
+                    endIcon={<AddIcon/>}
+                    sx={{mr:{md:6}}}
+                    >
+                    New Client
+                </Button>
             </Box>
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
