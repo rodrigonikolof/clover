@@ -1,14 +1,28 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Button, Grid, Paper, Tooltip, IconButton, TextField } from "@mui/material";
+import { Box, Typography, Button, Grid, Paper, Tooltip, IconButton, TextField, Popover } from "@mui/material";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function InterventionCard({intervention}){
     const [showUpdate, setShowUpdate] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
     const [interventionName, setInterventionName] = useState('');
     const [user, setUser, token, setToken] = useContext(Context);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+        setShowUpdate(false)
+      };
+    
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+    
+      const open = Boolean(anchorEl);
+      const id = open ? 'simple-popover' : undefined;
 
     useEffect(()=>{
         setInterventionName(intervention.intervention_name)
@@ -40,21 +54,24 @@ export default function InterventionCard({intervention}){
     return(
     <>
     
-        <Paper sx={{textAlign: 'center', lineHeight: '10px'}}>
+        <Paper sx={{textAlign: 'center', lineHeight: '10px', width: 1, maxWidth: 1, minWidth: 1}}>
             <Box sx={{display: 'flex'}}>
                 <Box sx={{flexGrow: 1}}>
                 {showUpdate ? 
                     <form onSubmit={handleSubmit}>
+                        
                         <TextField
                             onChange={(e)=>{setInterventionName(e.target.value)}}
                             defaultValue={interventionName}
-                            sx={{maxHeight:-1, mr: 1}}
+                            sx={{maxHeight:-1, mr: 1, width: 8/10}}
+                            
                             variant="standard"
                         />
                         <Button
                         type="submit"
                         color="primary"
                         variant="contained"
+                        sx={{mt:0.1}}
                         >
                             Save
                         </Button>
@@ -69,15 +86,40 @@ export default function InterventionCard({intervention}){
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Delete">
-                        <IconButton>
-                            <DeleteIcon/>
-                        </IconButton>
-                    </Tooltip>
+                        
+                            <IconButton onClick={handleClick} aria-describedby={id}>
+                                <DeleteIcon/>
+                            </IconButton>
+                    </Tooltip> 
+                    <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                              vertical: 'top',
+                              horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                              }}
+                            >
+                                <Box sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
+                                    <Box sx={{m:1}}>
+                                        <Typography>Confirm Delete? </Typography>
+                                        <Button
+                                        variant="contained"
+                                        sx={{mt:0.2, ml: 1.2}}
+                                        color="error"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </Box>
+                                </Box>
+                            </Popover>
                 </Box>
             </Box> 
-            
-            
-            
         </Paper>
         
 
