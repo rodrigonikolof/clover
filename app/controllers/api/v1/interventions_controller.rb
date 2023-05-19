@@ -26,10 +26,20 @@ class Api::V1::InterventionsController < ApplicationController
         end
     end
 
+    def create
+        @intervention = Intervention.create(intervention_params)
+
+        if @intervention.valid?
+            render json: {user: InterventionSerializer.new(@intervention)}, status: :created
+        else
+            render json: {error: 'failed to create intervention'}, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def intervention_params
-        params.permit(:intervention_name)
+        params.permit(:intervention_name, :user_id)
     end
 
 end
