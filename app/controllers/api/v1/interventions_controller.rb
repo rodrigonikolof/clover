@@ -30,9 +30,9 @@ class Api::V1::InterventionsController < ApplicationController
         @intervention = Intervention.create(intervention_params)
 
         if @intervention.valid?
-            render json: {user: InterventionSerializer.new(@intervention)}, status: :created
+            render json: @intervention, status: :created
         else
-            render json: {error: 'failed to create intervention'}, status: :unprocessable_entity
+            render json: {error: 'Could not creat intervention'}, status: :unprocessable_entity
         end
     end
 

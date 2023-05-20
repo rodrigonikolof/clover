@@ -46,10 +46,23 @@ export default function InterventionCard({intervention, handleDelete}){
         })
         toggleShowUpdate()}
         else if (!intervention.id){
-            console.log('there is no ID')
-        }
-        
-        
+            // console.log(interventionName)
+            // fetch('/api/v1/interventions', {
+            //     method: "POST",
+            //     headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            //     body: JSON.stringify({
+                    
+            //         intervention_name : interventionName,
+            //         user_id : user.user_id
+                    
+            //     })
+            //   }).then((r)=>{
+            //         if(r.ok){
+            //             r.json().then(data => console.log(data)) 
+            //         }
+            //     })
+            //     toggleShowUpdate()
+            }
     }
 
     
