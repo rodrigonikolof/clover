@@ -101,7 +101,7 @@ return(
             <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, mt: 3, flexGrow: 3}}>
                 <Grid container spacing={3}>
                     {clients ? 
-                            clients.map((client)=>{
+                            clients.filter((cl)=>cl.client_name.toLowerCase().includes(searchInput)).map((client)=>{
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
