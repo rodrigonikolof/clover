@@ -22,6 +22,7 @@ export default function SingleClient(){
     return(
         <>
         {client ? 
+        <>
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
@@ -35,7 +36,14 @@ export default function SingleClient(){
                     </Typography>
             </Box>
 
-            
+            <Box
+            sx={{display: 'flex', justifyContent: 'center', mt: 3}}
+            >
+
+                <Typography>Name: {client.client_name}</Typography>
+            </Box>
+
+            </>
 
             : null }
         </>
