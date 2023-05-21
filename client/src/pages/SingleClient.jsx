@@ -18,6 +18,10 @@ export default function SingleClient(){
     }, [])
     console.log(client)
 
+    
+    
+   
+
     return(
         <>
         {client ? 
@@ -43,15 +47,22 @@ export default function SingleClient(){
                         <Typography>Name: {client.client_name}</Typography>
                     </Box>
                     <Box>
-                        <Typography>{client.description? client.description : "Enter Description"}</Typography>
-                        <TextField
-                        id="outlined-multiline-static"
-                        label="Client Description"
-                        multiline
-                        rows={4}
-                        defaultValue= {client.description? client.description : ""}
-                        sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
-                        />
+                        {client.description? 
+                            <Typography>"Description: "{client.description}</Typography>
+                            :
+                            <TextField
+                            id="outlined-multiline-static"
+                            label= {client.description? "Description" : "Create a Description"}
+                            multiline
+                            rows={4}
+                            defaultValue= {client.description? client.description : ""}
+                            sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
+                            />
+                        }    
+                    
+
+
+                        
                     </Box>
                 </Box>
             </Box>
