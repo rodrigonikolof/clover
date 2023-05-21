@@ -45,9 +45,6 @@ export default function Interventions(){
         })
     }
 
-   console.log(interventions)
-    
-
 return(
     <>
         <Box
@@ -62,13 +59,12 @@ return(
                     Interventions
                 </Typography>
             </Box>
-            <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center'}}>
+            <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
                 {/* <Box>
                     1
                 </Box> */}
                 <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, flexGrow: 3}}>
                     <SearchBar setSearchInput={setSearchInput}/>
-                    {console.log(searchInput)}
                 </Box>
                 <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3}}>
                 <Button

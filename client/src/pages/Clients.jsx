@@ -4,6 +4,7 @@ import { Context } from "../App";
 import { Box, Typography, Button, Grid, Paper } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import NewClientModal from "../components/NewClientModal";
+import SearchBar from "../components/SearchBar";
 
 export default function Clients(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -11,6 +12,7 @@ export default function Clients(){
     const [open, setOpen] = useState(false);
     const [newClient, setNewClient] = useState('')
     const [newClientError, setNewClientError] = useState(false)
+    const [searchInput, setSearchInput] = useState("")
     const navigate = useNavigate();
     const handleOpen = () => {
         setOpen(true);
@@ -66,13 +68,37 @@ return(
                 </Typography>
         </Box>
 
-        <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
+        <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
 
-            <Box sx={{width: 200, display: { xs: 'none', md: 'flex'}, background: 'red', display:'flex', justifyContent: 'center' }}>
-                1
+            <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3, ml:{md: 6}}}>
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    endIcon={<AddIcon/>}
+                    onClick={handleOpen}
+                    >
+                    Archive
+                </Button>
             </Box>
 
-            <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, flexGrow: 3}}>
+            <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, mt:3, flexGrow: 3}}>
+                        <SearchBar setSearchInput={setSearchInput}/>
+            </Box>
+
+            <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3, mr:{md: 6}}}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        endIcon={<AddIcon/>}
+                        onClick={handleOpen}
+                        >
+                        New Client
+                    </Button>
+            </Box>
+
+        </Box>
+
+            <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, mt: 3, flexGrow: 3}}>
                 <Grid container spacing={3}>
                     {clients ? 
                             clients.map((client)=>{
@@ -91,18 +117,9 @@ return(
                 </Grid>
             </Box>
 
-            <Box sx={{ background:'blue', display:'flex', justifyContent: 'center', width: 200, height: 40}}>
-                <Button
-                    color="primary"
-                    variant="contained"
-                    endIcon={<AddIcon/>}
-                    onClick={handleOpen}
-                    >
-                    New Client
-                </Button>
-            </Box>
+            
 
-        </Box>
+        
         
         <NewClientModal 
             handleClose={handleClose} 
