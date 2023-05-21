@@ -28,7 +28,7 @@ class Api::V1::ClientsController < ApplicationController
     private
 
     def client_params
-        params.permit(:client_name, :user_id, :active)
+        params.require(:client).permit(:client_name, :user_id, :active)
     end
 
 end

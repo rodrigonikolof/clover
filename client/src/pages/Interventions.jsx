@@ -28,16 +28,18 @@ export default function Interventions(){
 
     const handleCreate = ()=>{
        const newIntervention = {intervention_name: "New Intervention", user_id: user.user.id}
-        setInterventions([...interventions,newIntervention])
+        
         fetch('/api/v1/interventions', {
             method: "POST",
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify({
-                
                 intervention_name : newIntervention.intervention_name,
                 user_id : newIntervention.user_id
-                
             })
+        }).then(r => {
+            if (r.ok){
+                r.json().then(data => setInterventions([...interventions,data]))
+            }
         })
     }
 

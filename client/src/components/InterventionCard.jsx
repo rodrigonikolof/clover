@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function InterventionCard({intervention, handleDelete}){
     const [showUpdate, setShowUpdate] = useState(false);
-    const [confirmDelete, setConfirmDelete] = useState(false);
     const [interventionName, setInterventionName] = useState('');
     const [user, setUser, token, setToken] = useContext(Context);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,7 +35,7 @@ export default function InterventionCard({intervention, handleDelete}){
         e.preventDefault()
         if (interventionName === intervention.intervention_name || interventionName === "")
             toggleShowUpdate()
-        else if (intervention.id){
+        else{
         fetch(`/api/v1/interventions/${intervention.id}`,{
             method: 'PATCH',
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
@@ -45,29 +44,11 @@ export default function InterventionCard({intervention, handleDelete}){
             })
         })
         toggleShowUpdate()}
-        else if (!intervention.id){
-            // console.log(interventionName)
-            // fetch('/api/v1/interventions', {
-            //     method: "POST",
-            //     headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
-            //     body: JSON.stringify({
-                    
-            //         intervention_name : interventionName,
-            //         user_id : user.user_id
-                    
-            //     })
-            //   }).then((r)=>{
-            //         if(r.ok){
-            //             r.json().then(data => console.log(data)) 
-            //         }
-            //     })
-            //     toggleShowUpdate()
-            }
     }
 
     
 
-    
+    console.log(intervention)
 
     return(
     <>

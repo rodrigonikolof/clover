@@ -39,7 +39,7 @@ class Api::V1::InterventionsController < ApplicationController
     private
 
     def intervention_params
-        params.permit(:intervention_name, :user_id)
+        params.require(:intervention).permit(:intervention_name, :user_id)
     end
 
 end
