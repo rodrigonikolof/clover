@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../App";
-import { Box, Typography, Button, Grid, Paper } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 
 export default function SingleClient(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -16,7 +16,6 @@ export default function SingleClient(){
             }
         }).then(r => r.json()).then(data => setClient(data))
     }, [])
-    console.log(params.id)
     console.log(client)
 
     return(
@@ -39,8 +38,22 @@ export default function SingleClient(){
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
-
-                <Typography>Name: {client.client_name}</Typography>
+                <Box sx={{display: 'block'}}>
+                    <Box>
+                        <Typography>Name: {client.client_name}</Typography>
+                    </Box>
+                    <Box>
+                        <Typography>{client.description? client.description : "Enter Description"}</Typography>
+                        <TextField
+                        id="outlined-multiline-static"
+                        label="Client Description"
+                        multiline
+                        rows={4}
+                        defaultValue= {client.description? client.description : ""}
+                        sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
+                        />
+                    </Box>
+                </Box>
             </Box>
 
             </>
