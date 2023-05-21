@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Grid, Button } from "@mui/material";
+import { Box, Typography, Grid, Button, TextField } from "@mui/material";
 import InterventionCard from "../components/InterventionCard";
 import AddIcon from '@mui/icons-material/Add';
+import SearchBar from "../components/SearchBar";
 
 export default function Interventions(){
     const [user, setUser, token, setToken] = useContext(Context);
     const [interventions, setInterventions] = useState(null)
+    const [searchInput, setSearchInput] = useState("")
 
     useEffect(()=>{
         fetch('/api/v1/interventions',{
@@ -43,7 +45,7 @@ export default function Interventions(){
         })
     }
 
-   
+   console.log(interventions)
     
 
 return(
@@ -60,16 +62,25 @@ return(
                     Interventions
                 </Typography>
             </Box>
-            <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'right'}, mt: 3}}>
-            <Button
-                    color="primary"
-                    variant="contained"
-                    endIcon={<AddIcon/>}
-                    sx={{mr:{md:6}}}
-                    onClick={handleCreate}
-                    >
-                    Create  
-                </Button>
+            <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center'}}>
+                {/* <Box>
+                    1
+                </Box> */}
+                <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, flexGrow: 3}}>
+                    <SearchBar setSearchInput={setSearchInput}/>
+                    {console.log(searchInput)}
+                </Box>
+                <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3}}>
+                <Button
+                        color="primary"
+                        variant="contained"
+                        endIcon={<AddIcon/>}
+                        sx={{mr:{md:6}}}
+                        onClick={handleCreate}
+                        >
+                        Create  
+                    </Button>
+                </Box>
             </Box>
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
@@ -77,9 +88,9 @@ return(
                 <Box sx={{ml: 6, mr: 6, mb: 6}} >
                     <Grid container spacing={3}>
                         {interventions ? 
-                            interventions.map((intervention)=>{
+                            interventions.filter((int)=>int.intervention_name.toLowerCase().includes(searchInput)).map((intervention)=>{
                             return   (
-                                <Grid item xs={12} md={12}  key={intervention.id}>
+                                <Grid item xs={12} md={12}  key={intervention.id} sx={{minWidth:{xs:12, md:12}}}>
                                     <InterventionCard intervention={intervention} key={intervention.id} handleDelete={handleDelete}/>
                                 </Grid>
                             )
@@ -88,6 +99,7 @@ return(
                     </Grid>
                 </Box>
             </Box>
+
     </>
 )
 

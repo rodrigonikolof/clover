@@ -48,12 +48,12 @@ export default function InterventionCard({intervention, handleDelete}){
 
     
 
-    console.log(intervention)
+
 
     return(
     <>
     
-        <Paper sx={{textAlign: 'center', lineHeight: '10px', width: 1, maxWidth: 1, minWidth: 1}}>
+        <Paper sx={{textAlign: 'center', lineHeight: '10px', maxWidth: 1, minWidth:{xs:12, md:12}}}>
             <Box sx={{display: 'flex'}}>
                 <Box sx={{flexGrow: 1}}>
                 {showUpdate ? 
