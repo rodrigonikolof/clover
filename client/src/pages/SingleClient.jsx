@@ -6,6 +6,11 @@ import { Box, Typography, Button, TextField } from "@mui/material";
 export default function SingleClient(){
     const [user, setUser, token, setToken] = useContext(Context);
     const [client, setClient] = useState(null)
+    const [description, setDescription] = useState('')
+    const [clientNameUpdate, setClientNameUpdate] = useState('')
+    const [active, setActive] = useState('')
+    const [edit, setEdit] = useState(false)
+
     const params = useParams()
    
     useEffect(()=>{
@@ -16,7 +21,7 @@ export default function SingleClient(){
             }
         }).then(r => r.json()).then(data => setClient(data))
     }, [])
-    console.log(client)
+    console.log(description)
 
     
     
@@ -39,6 +44,17 @@ export default function SingleClient(){
                     </Typography>
             </Box>
 
+            <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
+                <Button
+                        color="primary"
+                        // variant="contained"
+                        sx={{mr:{md:6}}}
+                        
+                        >
+                        Edit  
+                </Button>
+            </Box>
+
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
@@ -47,9 +63,10 @@ export default function SingleClient(){
                         <Typography>Name: {client.client_name}</Typography>
                     </Box>
                     <Box>
-                        {client.description? 
+                        {/* {client.description? 
                             <Typography>"Description: "{client.description}</Typography>
                             :
+                            <form>
                             <TextField
                             id="outlined-multiline-static"
                             label= {client.description? "Description" : "Create a Description"}
@@ -57,8 +74,13 @@ export default function SingleClient(){
                             rows={4}
                             defaultValue= {client.description? client.description : ""}
                             sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
+                            onChange={(e)=>setDescription(e.target.value)}
                             />
-                        }    
+                            <Button>
+                                Save
+                            </Button>
+                            </form>
+                        }     */}
                     
 
 
