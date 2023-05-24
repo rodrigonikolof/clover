@@ -21,7 +21,7 @@ export default function SingleClient(){
             }
         }).then(r => r.json()).then(data => setClient(data))
     }, [])
-    console.log(description)
+    console.log(edit)
 
     
     
@@ -45,47 +45,59 @@ export default function SingleClient(){
             </Box>
 
             <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
-                <Button
-                        color="primary"
-                        // variant="contained"
-                        sx={{mr:{md:6}}}
-                        
-                        >
+                <Button color="primary" sx={{mr:{md:6}}} onClick={()=>setEdit(!edit)}>
                         Edit  
                 </Button>
             </Box>
 
-            <Box
-            sx={{display: 'flex', justifyContent: 'center', mt: 3}}
-            >
+            <Box sx={{display: 'flex', justifyContent: 'left', mt: 3, mr: 6, ml:6}}>
                 <Box sx={{display: 'block'}}>
-                    <Box>
-                        <Typography>Name: {client.client_name}</Typography>
-                    </Box>
-                    <Box>
-                        {/* {client.description? 
-                            <Typography>"Description: "{client.description}</Typography>
-                            :
-                            <form>
+                    {!edit?  
+                    <>
+                    <Box> <Typography>Name: {client.client_name}</Typography> </Box>
+                    <Box sx={{mt:3}}> Description: {client.description? client.description : "No description to show"}</Box>
+                    </>
+                        :
+
+                    <Box sx={{display:'block', maxWidth:300}}>
+                        <form>
+                            
+                            <TextField
+                                defaultValue={client.client_name}
+                                onChange={(e)=>{setClientNameUpdate(e.target.value)}}
+                                label="Client Name"
+                            />
                             <TextField
                             id="outlined-multiline-static"
-                            label= {client.description? "Description" : "Create a Description"}
+                            label="Client Description"
                             multiline
                             rows={4}
                             defaultValue= {client.description? client.description : ""}
                             sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
                             onChange={(e)=>setDescription(e.target.value)}
                             />
-                            <Button>
+                            <Button
+                            type="submit"
+                            color="primary"
+                            variant="contained"
+                            sx={{mt:1}}>
                                 Save
                             </Button>
-                            </form>
+                        </form>
+                    </Box>
+
+                    }
+                        
+                        {/* {client.description? 
+                            <Typography>"Description: "{client.description}</Typography>
+                            :
+                            
                         }     */}
                     
 
 
                         
-                    </Box>
+                    
                 </Box>
             </Box>
 
