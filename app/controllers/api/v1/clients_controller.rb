@@ -25,10 +25,21 @@ class Api::V1::ClientsController < ApplicationController
         end
     end
 
+    def update
+        @client = Client.find(params[:id])
+
+        if @client && client[:user_id] == current_user.id
+            @client.update(client_params)
+            render json: @client, status: :ok
+        else
+            render json: {error: 'Unable to update client'}
+        end
+    end
+
     private
 
     def client_params
-        params.require(:client).permit(:client_name, :user_id, :active)
+        params.require(:client).permit(:client_name, :user_id, :active, :description)
     end
 
 end

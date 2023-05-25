@@ -54,7 +54,7 @@ export default function SingleClient(){
                     </Box>
 
                     <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, mr: 6, ml:6}}>
-                        <Box sx={{display: 'block'}}>
+                        <Box sx={{display: 'block', maxWidth:500}}>
                             {!edit?  
                             <>
                             <Box> <Typography>Name: {client.client_name}</Typography> </Box>
