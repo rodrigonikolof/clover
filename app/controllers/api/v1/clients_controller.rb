@@ -28,7 +28,7 @@ class Api::V1::ClientsController < ApplicationController
     def update
         @client = Client.find(params[:id])
 
-        if @client && client[:user_id] == current_user.id
+        if @client && @client[:user_id] == current_user.id
             @client.update(client_params)
             render json: @client, status: :ok
         else

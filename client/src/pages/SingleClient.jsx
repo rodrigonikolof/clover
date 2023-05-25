@@ -25,6 +25,21 @@ export default function SingleClient(){
 
     const handleUpdate = (e)=>{
         e.preventDefault()
+        // if (interventionName === intervention.intervention_name || interventionName === "")
+        //     toggleShowUpdate()
+        // else{
+
+        fetch(`/api/v1/clients/${client.id}`,{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                client_name : clientNameUpdate, 
+                description : description,
+            })
+        })
+        setEdit(false)
+        
+    // }
     }
     
    
