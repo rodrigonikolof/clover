@@ -23,7 +23,9 @@ export default function SingleClient(){
     }, [])
     console.log(edit)
 
-    
+    const handleUpdate = (e)=>{
+        e.preventDefault()
+    }
     
    
 
@@ -44,66 +46,60 @@ export default function SingleClient(){
                     </Typography>
             </Box>
 
-            <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
-                <Button color="primary" sx={{mr:{md:6}}} onClick={()=>setEdit(!edit)}>
-                        Edit  
-                </Button>
-            </Box>
-
-            <Box sx={{display: 'flex', justifyContent: 'left', mt: 3, mr: 6, ml:6}}>
-                <Box sx={{display: 'block'}}>
-                    {!edit?  
-                    <>
-                    <Box> <Typography>Name: {client.client_name}</Typography> </Box>
-                    <Box sx={{mt:3}}> Description: {client.description? client.description : "No description to show"}</Box>
-                    </>
-                        :
-
-                    <Box sx={{display:'block', maxWidth:300}}>
-                        <form>
-                            
-                            <TextField
-                                defaultValue={client.client_name}
-                                onChange={(e)=>{setClientNameUpdate(e.target.value)}}
-                                label="Client Name"
-                            />
-                            <TextField
-                            id="outlined-multiline-static"
-                            label="Client Description"
-                            multiline
-                            rows={4}
-                            defaultValue= {client.description? client.description : ""}
-                            sx={{minWidth: {xs: 300, md: 500, lg:700}, mt:1}}
-                            onChange={(e)=>setDescription(e.target.value)}
-                            />
-                            <Button
-                            type="submit"
-                            color="primary"
-                            variant="contained"
-                            sx={{mt:1}}>
-                                Save
-                            </Button>
-                        </form>
+            
+                    <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
+                        <Button color="primary" sx={{mr:{md:40}}} onClick={()=>setEdit(!edit)}>
+                                Edit  
+                        </Button>
                     </Box>
 
-                    }
-                        
-                        {/* {client.description? 
-                            <Typography>"Description: "{client.description}</Typography>
-                            :
+                    <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, mr: 6, ml:6}}>
+                        <Box sx={{display: 'block'}}>
+                            {!edit?  
+                            <>
+                            <Box> <Typography>Name: {client.client_name}</Typography> </Box>
+                            <Box sx={{mt:3}}> Description: {client.description? client.description : "No description to show"}</Box>
+                            </>
+                                :
+
+                            <Box sx={{display:'block', maxWidth:500}}>
+                                <form>
+                                    
+                                    <TextField
+                                        defaultValue={client.client_name}
+                                        onChange={(e)=>{setClientNameUpdate(e.target.value)}}
+                                        label="Client Name"
+                                    />
+                                    <TextField
+                                    id="outlined-multiline-static"
+                                    label="Client Description"
+                                    multiline
+                                    rows={5}
+                                    defaultValue= {client.description? client.description : ""}
+                                    sx={{minWidth: {xs: 300, md: 500}, mt:1}}
+                                    onChange={(e)=>setDescription(e.target.value)}
+                                    />
+                                    <Button
+                                    type="submit"
+                                    color="primary"
+                                    variant="contained"
+                                    sx={{mt:1}}
+                                    onClick={handleUpdate}
+                                    >
+                                        Save
+                                    </Button>
+                                </form>
+                            </Box>
                             
-                        }     */}
-                    
-
-
-                        
-                    
-                </Box>
-            </Box>
-
+                            }                
+                            
+                        </Box>
+                    </Box>
+            
             </>
 
             : null }
+            
         </>
     )
 }
