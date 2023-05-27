@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../App";
 import { Box, Typography, Button, TextField } from "@mui/material";
-import SingleGoal from "../components/SingleGoal";
+import Goals from "../components/Goals";
 
 export default function SingleClient(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -119,8 +119,8 @@ export default function SingleClient(){
             : null }
             
             {client? 
-                <Box sx={{display: 'flex', justifyContent: 'center', mt: 3}}>
-                    <SingleGoal client_id={client.id}/>
+                <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, ml:6, mr: 6}}>
+                    <Goals client_id={client.id}/>
                 </Box>
             
                 

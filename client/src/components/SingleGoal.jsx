@@ -1,23 +1,86 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Typography, Accordion, AccordionSummary, AccordionDetails, Box, IconButton, Tooltip, TextField, Button } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Context } from "../App";
-import { Button } from "@mui/material";
 
-export default function SingleGoal({client_id}){
+export default function SingleGoal({goal}){
 
     const [user, setUser, token, setToken] = useContext(Context);
-    const [goals, setGoals] = useState(null)
+    const [showUpdate, setShowUpdate] = useState(false)
+    const [goalName, setGoalName] = useState(goal.goal_name)
+
+
+    const toggleShowUpdate = ()=>{
+        setShowUpdate(!showUpdate)
+    }
+
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        if (goalName === goal.goal_name || goalName === ""){
+            toggleShowUpdate()
+        }
+        else{
+            fetch(`/api/v1/goals/${goal.id}`,{
+                method: 'PATCH',
+                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    goal_name : goalName, 
+                })
+            })
+            toggleShowUpdate()
+        }
+
+    }
 
     useEffect(()=>{
-        fetch(`/api/v1/goals/${client_id}`,{
-            method: 'GET',
-            headers: {Authorization : `Bearer ${token}`}
-        }).then(r => r.json()).then(data => console.log(data))
+
     },[])
+
+    console.log(showUpdate)
 
     return(
         <>
-        
-        
+            <Accordion>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                    
+                    <Box sx={{flexGrow: 1}}>
+                        {showUpdate? 
+                            <form onSubmit={handleSubmit}>
+                                <TextField
+                                    onChange={(e)=>{setGoalName(e.target.value)}}
+                                    defaultValue={goalName}
+                                    sx={{maxHeight:-1, mr: 1, width: 8/10}}
+                                    variant="standard"
+                                />
+                                <Button
+                                type="submit"
+                                color="primary"
+                                variant="contained"
+                                sx={{mt:0.1}}
+                                > Save </Button>
+                            </form>
+                            : 
+                            <Typography>{goalName}</Typography>} 
+                    </Box>
+                    <Tooltip title="Edit">
+                        <IconButton onClick={toggleShowUpdate}><EditNoteIcon sx={{mr: 2, ml: 2}}/></IconButton>
+                    </Tooltip>
+                </AccordionSummary>
+                <AccordionDetails>
+                    123
+                </AccordionDetails>
+                <AccordionDetails>
+                    123
+                </AccordionDetails>
+            </Accordion>
+
+            
         </>
     )
+
 }
