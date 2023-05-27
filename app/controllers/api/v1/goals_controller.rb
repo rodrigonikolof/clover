@@ -16,6 +16,16 @@ class Api::V1::GoalsController < ApplicationController
         end
     end
 
+    def update
+        @goal = Goal.find(params[:id])
+
+        if @goal && @goal.client.user.id == current_user.id
+            @goal.update(goal_params)
+        else
+            render json: {error: 'Unable to update goal'}
+        end
+    end
+
     private
 
     def goal_params
