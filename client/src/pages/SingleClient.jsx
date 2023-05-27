@@ -120,7 +120,7 @@ export default function SingleClient(){
             
             {client? 
                 <Box sx={{display: 'flex', justifyContent: 'center', mt: 3}}>
-                    <SingleGoal/>
+                    <SingleGoal client_id={client.id}/>
                 </Box>
             
                 
