@@ -117,6 +117,17 @@ export default function SingleClient(){
 
             : null }
             
+            {client? 
+                <Box sx={{display: 'flex', justifyContent: 'center', mt: 3}}>
+                    "Goals go here"
+                </Box>
+            
+                
+
+            :
+            null    
+            }
+
         </>
     )
 }
