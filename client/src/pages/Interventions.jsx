@@ -81,12 +81,13 @@ return(
             <Box
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
+                {/* sx={{minWidth:{xs:12, md:12}}} */}
                 <Box sx={{ml: 6, mr: 6, mb: 6}} >
                     <Grid container spacing={3}>
                         {interventions ? 
                             interventions.filter((int)=>int.intervention_name.toLowerCase().includes(searchInput)).map((intervention)=>{
                             return   (
-                                <Grid item xs={12} md={12}  key={intervention.id} sx={{minWidth:{xs:12, md:12}}}>
+                                <Grid item xs={12} md={12} lg={12} key={intervention.id} >
                                     <InterventionCard intervention={intervention} key={intervention.id} handleDelete={handleDelete}/>
                                 </Grid>
                             )

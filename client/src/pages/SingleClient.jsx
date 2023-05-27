@@ -7,7 +7,7 @@ export default function SingleClient(){
     const [user, setUser, token, setToken] = useContext(Context);
     const [client, setClient] = useState(null)
     const [description, setDescription] = useState('')
-    const [clientNameUpdate, setClientNameUpdate] = useState('')
+    const [clientName, setClientName] = useState('')
     const [active, setActive] = useState('')
     const [edit, setEdit] = useState(false)
 
@@ -19,9 +19,13 @@ export default function SingleClient(){
             headers: {
                 Authorization : `Bearer ${token}`
             }
-        }).then(r => r.json()).then(data => setClient(data))
+        }).then(r => r.json()).then(data => {
+            setClient(data)
+            setDescription(data.description)
+            setClientName(data.client_name)
+        })
     }, [])
-    console.log(edit)
+    
 
     const handleUpdate = (e)=>{
         e.preventDefault()
@@ -33,13 +37,11 @@ export default function SingleClient(){
             method: 'PATCH',
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify({
-                client_name : clientNameUpdate, 
+                client_name : clientName, 
                 description : description,
             })
         })
         setEdit(false)
-        
-    // }
     }
     
    
@@ -57,7 +59,7 @@ export default function SingleClient(){
                         color="textSecondary"
                         gutterBottom
                     >
-                        Client Page - {client.client_name}
+                        Client Page - {clientName}
                     </Typography>
             </Box>
 
@@ -72,8 +74,8 @@ export default function SingleClient(){
                         <Box sx={{display: 'block', maxWidth:500}}>
                             {!edit?  
                             <>
-                            <Box> <Typography>Name: {client.client_name}</Typography> </Box>
-                            <Box sx={{mt:3}}> Description: {client.description? client.description : "No description to show"}</Box>
+                            <Box> <Typography>Name: {clientName}</Typography> </Box>
+                            <Box sx={{mt:3}}> Description: {description? description : "No description to show"}</Box>
                             </>
                                 :
 
@@ -82,7 +84,7 @@ export default function SingleClient(){
                                     
                                     <TextField
                                         defaultValue={client.client_name}
-                                        onChange={(e)=>{setClientNameUpdate(e.target.value)}}
+                                        onChange={(e)=>{setClientName(e.target.value)}}
                                         label="Client Name"
                                     />
                                     <TextField
