@@ -8,6 +8,7 @@ export default function Goals({client_id}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [goals, setGoals] = useState(null)
+    const [newGoalName, setNewGoalName] = useState('New Goal')
 
     useEffect(()=>{
         fetch(`/api/v1/goals/${client_id}`,{
@@ -15,6 +16,22 @@ export default function Goals({client_id}){
             headers: {Authorization : `Bearer ${token}`}
         }).then(r => r.json()).then(data => setGoals(data))
     },[])
+
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        fetch('/api/v1/goals', {
+            method: "POST",
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                goal_name : newGoalName,
+                client_id : client_id
+            })
+        }).then(r => {
+            if (r.ok){
+                r.json().then(data => setGoals([...goals,data]))
+            }
+        })
+    }
 
 console.log(goals)
 
@@ -27,6 +44,7 @@ console.log(goals)
                         color="primary"
                         variant="contained"
                         endIcon={<AddIcon/>}
+                        onClick={handleSubmit}
                     >
                     New Goal
                     </Button>
@@ -36,7 +54,7 @@ console.log(goals)
                 {goals? 
                     goals.map((goal)=>{
                     return   (
-                        <SingleGoal goal={goal}/>
+                        <SingleGoal key={goal.id} goal={goal}/>
                     )
                     })    
                     :

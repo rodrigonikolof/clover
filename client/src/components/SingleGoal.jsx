@@ -37,7 +37,7 @@ export default function SingleGoal({goal}){
 
     },[])
 
-    console.log(showUpdate)
+
 
     return(
         <>
