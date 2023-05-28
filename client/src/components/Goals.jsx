@@ -9,6 +9,7 @@ export default function Goals({client_id}){
     const [user, setUser, token, setToken] = useContext(Context);
     const [goals, setGoals] = useState(null)
     const [newGoalName, setNewGoalName] = useState('New Goal')
+    const [interventions, setInterventions] = useState(null)
 
     useEffect(()=>{
         fetch(`/api/v1/goals/${client_id}`,{
@@ -33,12 +34,23 @@ export default function Goals({client_id}){
         })
     }
 
-console.log(goals)
+    useEffect(()=>{
+        fetch('/api/v1/interventions',{
+            method: 'GET',
+            headers: {
+                Authorization : `Bearer ${token}`
+            }
+        }).then(r => r.json()).then(data => setInterventions(data))
+    },[])
+
+console.log(interventions)
 
     return(
         <Box sx={{width: 1, mt:5, mb:6}}>
             <Box sx={{display: 'flex', minWidth: 1}}>
-                <Box sx={{flexGrow: 1, justifyContent:'center', display:'flex'}}><Typography variant="h5" color='textSecondary'>Goals</Typography></Box>
+                <Box sx={{flexGrow: 1, justifyContent:'center', display:'flex'}}>
+                    {/* <Typography variant="h5" color='textSecondary'>Goals</Typography> */}
+                </Box>
                 <Box>
                     <Button
                         color="primary"
@@ -54,7 +66,7 @@ console.log(goals)
                 {goals? 
                     goals.map((goal)=>{
                     return   (
-                        <SingleGoal key={goal.id} goal={goal}/>
+                        <SingleGoal key={goal.id} goal={goal} interventions={interventions} setInterventions={setInterventions}/>
                     )
                     })    
                     :

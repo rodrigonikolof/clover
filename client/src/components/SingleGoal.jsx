@@ -3,8 +3,9 @@ import { Typography, Accordion, AccordionSummary, AccordionDetails, Box, IconBut
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Context } from "../App";
+import InterventionSelect from "./InterventionSelect";
 
-export default function SingleGoal({goal}){
+export default function SingleGoal({goal, interventions, setInterventions}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [showUpdate, setShowUpdate] = useState(false)
@@ -65,18 +66,22 @@ export default function SingleGoal({goal}){
                                 > Save </Button>
                             </form>
                             : 
-                            <Typography>{goalName}</Typography>} 
+                            <Typography variant="h6" color='textSecondary'>{goalName}</Typography>} 
                     </Box>
                     <Tooltip title="Edit">
                         <IconButton onClick={toggleShowUpdate}><EditNoteIcon sx={{mr: 2, ml: 2}}/></IconButton>
                     </Tooltip>
                 </AccordionSummary>
+                <Box>
+                    <InterventionSelect interventions={interventions}/>
+                </Box>
                 <AccordionDetails>
-                    123
+                    - Intervention 1
                 </AccordionDetails>
                 <AccordionDetails>
-                    123
+                   - Intervention 2
                 </AccordionDetails>
+               
             </Accordion>
 
             
