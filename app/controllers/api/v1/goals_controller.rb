@@ -26,10 +26,20 @@ class Api::V1::GoalsController < ApplicationController
         end
     end
 
+    def create
+        @goal = Goal.create(goal_params)
+
+        if @goal.valid?
+            render json: @goal, status: :created
+        else
+            render json: {error: 'Could not create goal'}, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def goal_params
-        params.require(:goal).permit(:client_name, :goal_name)
+        params.require(:goal).permit(:client_id, :goal_name)
     end
 
 end
