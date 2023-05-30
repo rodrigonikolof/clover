@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useContext } from "react";
 import { Autocomplete, TextField } from "@mui/material";
+import { Context } from "../App";
 
-export default function InterventionSelect({interventions}){
+export default function InterventionSelect({interventions, goal}){
 
+    const [user, setUser, token, setToken] = useContext(Context);
     const [selected, setSelected] = useState(null)
 
     const handleChange = (e,input)=>{
@@ -12,12 +14,25 @@ export default function InterventionSelect({interventions}){
     if(selected){
         const search = interventions.find(int => int.intervention_name == selected)
         if (search){
-            console.log(search)
+            fetch(`/api/v1/goal_intervention`, {
+                method: "POST",
+                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    goal_id : goal.id,
+                    intervention_id: search.id
+                })
+            }).then(r => {
+                if (r.ok){
+                    r.json().then(data => console.log(data))
+                }
+            })
+            setSelected(null)
         }
         else{
             console.log(selected)
         }     
     }
+
 
 
     return(
@@ -34,15 +49,20 @@ export default function InterventionSelect({interventions}){
             // onChange={(e,input)=>handleChange(e, input)}
             // />
 
+        <>
+          
+          {interventions?
             <Autocomplete
             id="free-solo-demo"
             freeSolo
             options={interventions.map((option) => option.intervention_name)}
             renderInput={(params) => <TextField {...params} label="Interventions" />}
             onChange={(e,input)=>handleChange(e, input)}
-          />
+            />
 
-        
+            :null}
+
+       </>
     )
 
 }

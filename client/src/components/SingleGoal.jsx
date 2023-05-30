@@ -38,8 +38,6 @@ export default function SingleGoal({goal, interventions, setInterventions}){
 
     },[])
 
-
-
     return(
         <>
             <Accordion>
@@ -73,7 +71,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                     </Tooltip>
                 </AccordionSummary>
                 <Box>
-                    <InterventionSelect interventions={interventions}/>
+                    <InterventionSelect interventions={interventions} goal={goal}/>
                 </Box>
                 <AccordionDetails>
                     - Intervention 1
