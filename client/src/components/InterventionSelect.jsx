@@ -9,20 +9,39 @@ export default function InterventionSelect({interventions}){
         setSelected(input)
     }
 
-    console.log(selected)
+    if(selected){
+        const search = interventions.find(int => int.intervention_name == selected)
+        if (search){
+            console.log(search)
+        }
+        else{
+            console.log(selected)
+        }     
+    }
+
 
     return(
     
+            // <Autocomplete
+            // disablePortal
+            // id="combo-box-demo"
+            // freeSolo
+            // options={interventions}
+            // getOptionLabel={(option) => option.intervention_name}
+            // sx={{ width: 300 }}
+            // renderInput={(params) => <TextField {...params} label="Intervention" />}
+            // input={selected}
+            // onChange={(e,input)=>handleChange(e, input)}
+            // />
+
             <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={interventions}
-            getOptionLabel={(option) => option.intervention_name}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Intervention" />}
-            input={selected}
+            id="free-solo-demo"
+            freeSolo
+            options={interventions.map((option) => option.intervention_name)}
+            renderInput={(params) => <TextField {...params} label="Interventions" />}
             onChange={(e,input)=>handleChange(e, input)}
-            />
+          />
+
         
     )
 
