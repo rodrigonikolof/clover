@@ -1,9 +1,9 @@
 class Api::V1::GoalInterventionController < ApplicationController
 
     def show
-        @gi = GoalIntervention.find(params[:id])
-
-        if @gi && gi.goal.client.user.id == current_user.id
+        @gi = GoalIntervention.where(goal_id: params[:id])
+    
+        if @gi 
             render json: @gi, status: :ok
         else
             render json: {error: 'Failed to fetch Goal Intervention'}

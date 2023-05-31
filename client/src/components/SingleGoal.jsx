@@ -10,6 +10,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
     const [user, setUser, token, setToken] = useContext(Context);
     const [showUpdate, setShowUpdate] = useState(false)
     const [goalName, setGoalName] = useState(goal.goal_name)
+    const [goalInterventions, setGoalInterventions] = useState(null)
 
 
     const toggleShowUpdate = ()=>{
@@ -35,8 +36,15 @@ export default function SingleGoal({goal, interventions, setInterventions}){
     }
 
     useEffect(()=>{
-
+        fetch(`/api/v1/goal_intervention/${goal.id}`,{
+            method: 'GET',
+            headers: {
+                Authorization : `Bearer ${token}`
+            }
+        }).then(r => r.json()).then(data => console.log(data))
     },[])
+
+   
 
     return(
         <>

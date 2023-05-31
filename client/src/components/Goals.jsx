@@ -43,7 +43,7 @@ export default function Goals({client_id}){
         }).then(r => r.json()).then(data => setInterventions(data))
     },[])
 
-console.log(interventions)
+
 
     return(
         <Box sx={{width: 1, mt:5, mb:6}}>
