@@ -41,10 +41,10 @@ export default function SingleGoal({goal, interventions, setInterventions}){
             headers: {
                 Authorization : `Bearer ${token}`
             }
-        }).then(r => r.json()).then(data => console.log(data))
+        }).then(r => r.json()).then(data => setGoalInterventions(data))
     },[])
 
-   
+   console.log(goalInterventions)
 
     return(
         <>
@@ -81,12 +81,18 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                 <Box>
                     <InterventionSelect interventions={interventions} goal={goal}/>
                 </Box>
-                <AccordionDetails>
-                    - Intervention 1
-                </AccordionDetails>
-                <AccordionDetails>
-                   - Intervention 2
-                </AccordionDetails>
+                {goalInterventions? 
+                    goalInterventions.map((r)=>{
+                       return (
+                       <AccordionDetails>
+                            {r.intervention.intervention_name}
+                        </AccordionDetails>)
+                       
+                    })
+                    
+                    
+                    : null}
+                
                
             </Accordion>
 
