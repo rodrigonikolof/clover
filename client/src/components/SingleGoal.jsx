@@ -79,7 +79,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                 </AccordionSummary>
                 <Box>
                    
-                   <InterventionSelect interventions={interventions} goal={goal}/>
+                   <InterventionSelect interventions={interventions} setInterventions={setInterventions} goal={goal}/>
                 </Box>
                 {goalInterventions? 
                     goalInterventions.map((r)=>{

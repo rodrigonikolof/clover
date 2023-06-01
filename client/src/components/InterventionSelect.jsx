@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import { Autocomplete, TextField, Button, Box, inputAdornmentClasses } from "@mui/material";
 import { Context } from "../App";
 
-export default function InterventionSelect({interventions, goal}){
+export default function InterventionSelect({interventions, goal, setInterventions}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [selected, setSelected] = useState(null)
@@ -18,11 +18,15 @@ export default function InterventionSelect({interventions, goal}){
         e.preventDefault()
         
         const search = interventions.find(int => int.intervention_name == selected)
-        if (search){
-            saveGoalIntervention(search)
-        }
-        else{
-            createIntervention()
+        if(selected || newInput){
+            if (search){
+                saveGoalIntervention(search)
+            }
+            else{
+                createIntervention()
+            }
+        } else {
+            console.log("it's blank")
         }
     }
 
@@ -37,7 +41,11 @@ export default function InterventionSelect({interventions, goal}){
             })
         }).then(r => {
             if (r.ok){
-                r.json().then(data =>saveGoalIntervention(data))                
+                r.json().then(data =>{
+                    saveGoalIntervention(data)
+                    setInterventions([...interventions,data])
+                
+                })                
             }
             
         })
