@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import { Autocomplete, TextField, Button, Box, inputAdornmentClasses } from "@mui/material";
 import { Context } from "../App";
 
-export default function InterventionSelect({interventions, goal, setInterventions}){
+export default function InterventionSelect({interventions, setInterventions, setGoalInterventions, goalInterventions, goal}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [selected, setSelected] = useState(null)
@@ -64,7 +64,7 @@ export default function InterventionSelect({interventions, goal, setIntervention
             })
         }).then(r => {
             if (r.ok){
-                r.json().then(data => console.log(data))
+                r.json().then(data => setGoalInterventions([...goalInterventions ,data]))
             }
         })
         setSelected(null)

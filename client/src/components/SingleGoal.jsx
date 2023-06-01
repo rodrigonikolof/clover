@@ -44,6 +44,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
         }).then(r => r.json()).then(data => setGoalInterventions(data))
     },[])
 
+   
 
     return(
         <>
@@ -79,7 +80,13 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                 </AccordionSummary>
                 <Box>
                    
-                   <InterventionSelect interventions={interventions} setInterventions={setInterventions} goal={goal}/>
+                   <InterventionSelect 
+                        interventions={interventions} 
+                        setInterventions={setInterventions} 
+                        goal={goal} 
+                        setGoalInterventions={setGoalInterventions}
+                        goalInterventions={goalInterventions}
+                    />
                 </Box>
                 {goalInterventions? 
                     goalInterventions.map((r)=>{
