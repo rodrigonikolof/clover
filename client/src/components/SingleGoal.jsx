@@ -44,7 +44,6 @@ export default function SingleGoal({goal, interventions, setInterventions}){
         }).then(r => r.json()).then(data => setGoalInterventions(data))
     },[])
 
-   console.log(goalInterventions)
 
     return(
         <>
@@ -79,12 +78,13 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                     </Tooltip>
                 </AccordionSummary>
                 <Box>
-                    <InterventionSelect interventions={interventions} goal={goal}/>
+                   
+                   <InterventionSelect interventions={interventions} goal={goal}/>
                 </Box>
                 {goalInterventions? 
                     goalInterventions.map((r)=>{
                        return (
-                       <AccordionDetails>
+                       <AccordionDetails key={r.intervention.id}>
                             {r.intervention.intervention_name}
                         </AccordionDetails>)
                        

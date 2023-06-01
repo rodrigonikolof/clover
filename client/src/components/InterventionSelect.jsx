@@ -1,21 +1,22 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Autocomplete, TextField, Button, Box } from "@mui/material";
+import { Autocomplete, TextField, Button, Box, inputAdornmentClasses } from "@mui/material";
 import { Context } from "../App";
 
 export default function InterventionSelect({interventions, goal}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [selected, setSelected] = useState(null)
-    const [saved, setSaved] = useState(false)
+    const [newInput, setNewInput] = useState(null)
+    const [newIntervention, setNewIntervention]= useState(null)
    
 
     const handleChange = (e,input)=>{
         setSelected(input)
     }
 
-
     const handleAdd = (e)=>{
         e.preventDefault()
+        
         const search = interventions.find(int => int.intervention_name == selected)
         if (search){
             saveGoalIntervention(search)
@@ -31,17 +32,19 @@ export default function InterventionSelect({interventions, goal}){
             method: "POST",
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify({
-                intervention_name : newIntervention.intervention_name,
+                intervention_name : newInput,
                 user_id : user.user.id
             })
         }).then(r => {
             if (r.ok){
-                r.json().then(data =>console.log(data))
+                r.json().then(data =>saveGoalIntervention(data))                
             }
+            
         })
-
+        setNewIntervention(null)
     }
    
+    
 
     const saveGoalIntervention = (search)=>{
         fetch(`/api/v1/goal_intervention`, {
@@ -60,12 +63,11 @@ export default function InterventionSelect({interventions, goal}){
     }
 
     return(
-    
+        <> 
 
-    <>
           
-        {interventions?
-            <form onSubmit={handleAdd}> 
+        {interventions? 
+            <form onSubmit={handleAdd} onChange={(e)=>setNewInput(e.target.value)}> 
                 <Box sx={{display:'flex', ml:1, mr:1}}>
                     <Autocomplete
                     id="free-solo-demo"
