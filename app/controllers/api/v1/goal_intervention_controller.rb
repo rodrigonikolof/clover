@@ -25,7 +25,7 @@ class Api::V1::GoalInterventionController < ApplicationController
         @gi = GoalIntervention.find(params[:id])
 
         if @gi 
-            @intervention.destroy
+            @gi.destroy
             render json: {ok: 'Intervention deleted from goal'}, status: :ok
         else
             render json: {error: 'Unable to delete intervention from goal'}
