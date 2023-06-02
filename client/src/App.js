@@ -23,7 +23,7 @@ if (!token && count.current < 3){
   const savedToken = localStorage.getItem("clover-jwt")
   setToken(savedToken);
   count.current = count.current + 1;
-  console.log(`looked for token ${count.current} times`)
+  // console.log(`looked for token ${count.current} times`)
 }
 
 
@@ -36,12 +36,12 @@ useEffect(()=>{
     })
     .then(r => r.json())
     .then(data => setUser(data))
-    .then((data)=>console.log("found ", data))
-    // .then(()=>count.current = count.current + 1)
-    .then(()=>console.log(`use effect fired ${count.current} times`))
+    // .then((data)=>console.log("found ", data))
+    // // .then(()=>count.current = count.current + 1)
+    // .then(()=>console.log(`use effect fired ${count.current} times`))
   }
 }, [token])
-console.log('this is the user ', user)
+// console.log('this is the user ', user)
 
 
   if (!user || user === undefined) return <Context.Provider value={[user, setUser,token, setToken ]}><Login/></Context.Provider>

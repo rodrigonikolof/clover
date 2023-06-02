@@ -51,7 +51,6 @@ export default function Clients(){
               })
         }
     }
-    console.log(clients)
 
 return(
     <>
