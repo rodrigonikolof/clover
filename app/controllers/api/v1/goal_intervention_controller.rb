@@ -21,6 +21,17 @@ class Api::V1::GoalInterventionController < ApplicationController
 
     end 
 
+    def destroy
+        @gi = GoalIntervention.find(params[:id])
+
+        if @gi 
+            @intervention.destroy
+            render json: {ok: 'Intervention deleted from goal'}, status: :ok
+        else
+            render json: {error: 'Unable to delete intervention from goal'}
+        end
+    end
+
 private
 
     def goal_intervention_params
