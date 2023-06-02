@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Context } from "../App";
 import InterventionSelect from "./InterventionSelect";
+import InterventionInGoal from "./InterventionInGoal";
 
 export default function SingleGoal({goal, interventions, setInterventions}){
 
@@ -89,12 +90,13 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                     />
                 </Box>
                 {goalInterventions? 
-                    goalInterventions.map((r)=>{
+                    goalInterventions.map((goalIntervention)=>{
                        return (
-                       <AccordionDetails key={r.intervention.id}>
-                            {r.intervention.intervention_name}
-                        </AccordionDetails>)
-                       
+                        <InterventionInGoal 
+                            key={goalIntervention.intervention.id} 
+                            goalIntervention={goalIntervention}
+                        />
+                       )
                     })
                     
                     
