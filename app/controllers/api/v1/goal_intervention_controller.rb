@@ -32,10 +32,21 @@ class Api::V1::GoalInterventionController < ApplicationController
         end
     end
 
+    def update
+        @gi = GoalIntervention.find(params[:id])
+        
+        if @gi
+            @gi.update(goal_intervention_params)
+            render json: {ok: 'Status updated'}, status: :ok
+        else
+            render json: {error: 'Unable to update status'}
+        end
+    end
+
 private
 
     def goal_intervention_params
-        params.require(:goal_intervention).permit(:goal_id, :intervention_id)
+        params.require(:goal_intervention).permit(:goal_id, :intervention_id, :completed)
     end
 
 end

@@ -9,11 +9,11 @@ export default function InterventionInGoal({goalIntervention, goalInterventions,
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [completed, setCompleted] = useState(goalIntervention.completed)
 
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        // setShowUpdate(false)
       };
     
     const handleClose = () => {
@@ -23,10 +23,17 @@ export default function InterventionInGoal({goalIntervention, goalInterventions,
     const open = Boolean(anchorEl);
     const popoverID = open ? 'simple-popover' : undefined;
 
-    
+    const updateStatus =()=>{
+        fetch(`/api/v1/goal_intervention/${goalIntervention.id}`,{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                completed : !completed, 
+            })
+        }) 
+        setCompleted(!completed);
+    }
 
-
-console.log(goalIntervention)
 return(
 <>
 
@@ -38,8 +45,12 @@ return(
 
             <Box>
                 <Tooltip title="Toggle 'Completed'">
-                    <IconButton>
-                        <CheckCircleOutlineIcon sx={{color:'grey'}}/>
+                    <IconButton onClick={updateStatus}>
+                        {completed? 
+                            <CheckCircleOutlineIcon sx={{color:'lightgreen'}} />
+                            :
+                            <CheckCircleOutlineIcon sx={{color:'lightgrey'}} />
+                        }
                     </IconButton>
                 </Tooltip>
             </Box>
