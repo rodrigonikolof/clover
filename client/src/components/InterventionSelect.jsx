@@ -76,7 +76,7 @@ export default function InterventionSelect({interventions, setInterventions, set
           
         {interventions? 
             <form onSubmit={handleAdd} onChange={(e)=>setNewInput(e.target.value)}> 
-                <Box sx={{display:'flex', ml:1, mr:1}}>
+                <Box sx={{display:'flex', ml:1, mr:1, mb: 1}}>
                     <Autocomplete
                     id="free-solo-demo"
                     freeSolo

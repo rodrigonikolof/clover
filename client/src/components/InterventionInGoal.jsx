@@ -1,15 +1,86 @@
-import React from "react";
-import { AccordionDetails, Box, Typography } from "@mui/material";
+import React, {useState, useEffect, useContext} from "react";
+import { AccordionDetails, Box, Typography, Tooltip, IconButton, TextField, Popover, Button, Icon } from "@mui/material";
+import { Context } from "../App";
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 
-export default function InterventionInGoal({goalIntervention, goalInterventions}){
+export default function InterventionInGoal({goalIntervention, goalInterventions, handleDelete}){
+
+    const [user, setUser, token, setToken] = useContext(Context);
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
 
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+        // setShowUpdate(false)
+      };
+    
+    const handleClose = () => {
+    setAnchorEl(null);
+    };
+    
+    const open = Boolean(anchorEl);
+    const popoverID = open ? 'simple-popover' : undefined;
+
+    
+
+
+console.log(goalIntervention)
 return(
 <>
 
     <AccordionDetails>
-        {goalIntervention.intervention.intervention_name}
+
+        <Box display='flex' sx={{mr: 0, ml: 1}}>
+
+            <Box sx={{flexGrow:1, mt: 1}}> - {goalIntervention.intervention.intervention_name} </Box>
+
+            <Box>
+                <Tooltip title="Toggle 'Completed'">
+                    <IconButton>
+                        <CheckCircleOutlineIcon sx={{color:'grey'}}/>
+                    </IconButton>
+                </Tooltip>
+            </Box>
+
+            <Box>
+                <Tooltip title="Delete"> 
+                    <IconButton onClick={handleClick} aria-describedby={popoverID}>   
+                        <DeleteIcon/>
+                    </IconButton>
+                </Tooltip>
+                    <Popover
+                        id={popoverID}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                        >
+                            <Box sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
+                                <Box sx={{m:1}}>
+                                    <Typography>Confirm Delete? </Typography>
+                                    <Button
+                                    variant="contained"
+                                    sx={{mt:0.2, ml: 1.2}}
+                                    color="error"
+                                    onClick={()=>handleDelete(goalIntervention.id)}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Box>
+                            </Box>
+                    </Popover>
+            </Box>
+
+        </Box>
     </AccordionDetails>
 
 

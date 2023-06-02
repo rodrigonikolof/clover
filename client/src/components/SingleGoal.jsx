@@ -45,7 +45,13 @@ export default function SingleGoal({goal, interventions, setInterventions}){
         }).then(r => r.json()).then(data => setGoalInterventions(data))
     },[])
 
-   
+   const handleDelete = (id)=>{
+    fetch(`/api/v1/goal_intervention/${id}`,{
+        method: 'DELETE',
+        headers: {Authorization : `Bearer ${token}`}
+    })
+    setGoalInterventions(goalInterventions.filter(gi => gi.id != id))
+   }
 
     return(
         <>
@@ -95,6 +101,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                         <InterventionInGoal 
                             key={goalIntervention.intervention.id} 
                             goalIntervention={goalIntervention}
+                            handleDelete={handleDelete}
                         />
                        )
                     })
