@@ -8,6 +8,7 @@ import Interventions from './pages/Interventions';
 import Clients from './pages/Clients';
 import Modalities from './pages/Modalities';
 import SingleClient from './pages/SingleClient';
+import Profile from './pages/Profile';
 
 
 
@@ -56,6 +57,7 @@ useEffect(()=>{
         <Route path='/modalities' element={<Modalities/>}/>
         <Route path='/interventions' element={<Interventions/>}/>
         <Route path='/clients/:id' element={<SingleClient/>}/>
+        <Route path='profile' element={<Profile/>}/>
       </Routes>
     </Context.Provider>
   </>
