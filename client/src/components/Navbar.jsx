@@ -25,6 +25,7 @@ export default function Navbar(){
     const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -40,6 +41,11 @@ export default function Navbar(){
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = ()=>{
+      console.log('logout click')
+    }
+
 
 return(
     <AppBar position="static">
@@ -163,11 +169,23 @@ return(
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              
+                <MenuItem key={'profile'} onClick={()=>{
+                  handleCloseUserMenu();
+                  navigate('/profile');
+                    }
+                  }>
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-              ))}
+          
+                <MenuItem key={'logout'} onClick={()=>{
+                  handleCloseUserMenu();
+                  handleLogout()
+                    }
+                  }>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+
             </Menu>
           </Box>
         </Toolbar>
