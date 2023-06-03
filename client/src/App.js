@@ -42,7 +42,7 @@ useEffect(()=>{
     // .then(()=>console.log(`use effect fired ${count.current} times`))
   }
 }, [token])
-// console.log('this is the user ', user)
+if (user){console.log(user.user.id)}
 
 
   if (!user || user === undefined) return <Context.Provider value={[user, setUser,token, setToken ]}><Login/></Context.Provider>
