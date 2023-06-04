@@ -18,17 +18,18 @@ class Api::V1::UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
 
-        if @user && @user.authenticate(user_login_params[:password])
-            render json: {ok: 'Authenticated'}, status: :ok
+        if @user && @user.authenticate(user_params[:password])
+            @user.update(user_params)
+            render json: {ok: UserSerializer.new(@user)}, status: :ok
         else
-            render json: { message: 'Invalid username or password' }, status: :unauthorized
+            render json: { message: 'Something went wrong' }, status: :unauthorized
         end
     end
 
     private
 
     def user_params
-        params.permit(:email, :password, :password_confirmation, :name, :id)
+        params.permit(:email, :password, :password_confirmation, :name, :id, :user)
     end
 
 end

@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { Context } from "../App";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
@@ -11,9 +12,18 @@ export default function Profile(){
     const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('')
     const [newPasswordConfirmationError, setNewPasswordConfirmationError] = useState(false)
     const [updateConfirmation, setUpdateConfirmation] = useState(false)
+    const [user, setUser, token, setToken] = useContext(Context);
 
-    const handleSubmit = ()=>{
-        console.log('clicked')
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        fetch(`/api/v1/users/${user.user.id}`,{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                password,
+                name : 'Christie123'
+            })
+        }).then(res => res.json()).then(data => console.log(data))
     }
 
     return(
