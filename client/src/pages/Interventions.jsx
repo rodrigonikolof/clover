@@ -71,7 +71,7 @@ return(
                         color="primary"
                         variant="contained"
                         endIcon={<AddIcon/>}
-                        sx={{mr:{md:6}}}
+                        sx={{mr:{md:6}, backgroundColor:'green'}}
                         onClick={handleCreate}
                         >
                         Create  
@@ -82,7 +82,7 @@ return(
             sx={{display: 'flex', justifyContent: 'center', mt: 3}}
             >
                 {/* sx={{minWidth:{xs:12, md:12}}} */}
-                <Box sx={{ml: 6, mr: 6, mb: 6}} >
+                <Box sx={{ml: 6, mr: 6, mb: 6, minWidth:9.2/10}} >
                     <Grid container spacing={3}>
                         {interventions ? 
                             interventions.filter((int)=>int.intervention_name.toLowerCase().includes(searchInput)).map((intervention)=>{

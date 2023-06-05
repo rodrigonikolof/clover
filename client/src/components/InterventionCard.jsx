@@ -70,7 +70,7 @@ export default function InterventionCard({intervention, handleDelete}){
                         type="submit"
                         color="primary"
                         variant="contained"
-                        sx={{mt:0.1}}
+                        sx={{mt:0.1, backgroundColor: 'green'}}
                         >
                             Save
                         </Button>

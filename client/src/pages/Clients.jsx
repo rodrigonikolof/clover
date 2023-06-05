@@ -71,10 +71,11 @@ return(
 
             <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3, ml:{md: 6}}}>
                 <Button
-                    color="secondary"
+                    color="inherit"
                     variant="contained"
                     endIcon={<AddIcon/>}
                     onClick={handleOpen}
+                    // sx={{backgroundColor:'green'}}
                     >
                     Archive
                 </Button>
@@ -90,6 +91,7 @@ return(
                         variant="contained"
                         endIcon={<AddIcon/>}
                         onClick={handleOpen}
+                        sx={{backgroundColor:'green'}}
                         >
                         New Client
                     </Button>
