@@ -92,9 +92,9 @@ export default function Profile(){
 
                     <Button
                     type="submit"
-                    color="primary"
                     variant="contained"
                     endIcon={<KeyboardArrowRightIcon/>}
+                    sx={{backgroundColor:'green'}}
                     >
                     Submit
                     </Button>

@@ -87,7 +87,7 @@ export default function InterventionSelect({interventions, setInterventions, set
                     />
                     <Button
                     type="submit"
-                    color="primary"
+                    sx={{backgroundColor: 'green'}}
                     variant="contained"
                     >
                         Add

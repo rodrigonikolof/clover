@@ -53,7 +53,7 @@ export default function Goals({client_id}){
                 </Box>
                 <Box>
                     <Button
-                        color="primary"
+                        sx={{backgroundColor:'green'}}
                         variant="contained"
                         endIcon={<AddIcon/>}
                         onClick={handleSubmit}

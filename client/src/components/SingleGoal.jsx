@@ -75,7 +75,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                                 type="submit"
                                 color="primary"
                                 variant="contained"
-                                sx={{mt:0.1}}
+                                sx={{mt:0.1, backgroundColor:'green'}}
                                 > Save </Button>
                             </form>
                             : 

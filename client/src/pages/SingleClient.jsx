@@ -66,7 +66,7 @@ export default function SingleClient(){
 
             
                     <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
-                        <Button color="primary" sx={{mr:{md:40}}} onClick={()=>setEdit(!edit)}>
+                        <Button  sx={{mr:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
                         </Button>
                     </Box>
@@ -99,9 +99,8 @@ export default function SingleClient(){
                                     />
                                     <Button
                                     type="submit"
-                                    color="primary"
                                     variant="contained"
-                                    sx={{mt:1}}
+                                    sx={{mt:1, backgroundColor:'green'}}
                                     onClick={handleUpdate}
                                     >
                                         Save
