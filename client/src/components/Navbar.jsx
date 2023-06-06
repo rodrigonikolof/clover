@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import logo from '../img/logo.png'
 
 const pages = [
                 {text: 'Clients', path: '/clients'}, 
@@ -51,7 +52,8 @@ return(
     <AppBar position="static" sx={{background:'green'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mb:0.5, mt:0.5 }} component="img" src={logo} maxHeight={60}/> 
           <Typography
             variant="h4"
             noWrap
@@ -112,7 +114,8 @@ return(
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} maxHeight={30} component='img' src={logo}/>
           <Typography
             variant="h5"
             noWrap
