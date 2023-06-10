@@ -181,7 +181,7 @@ return(
                   navigate('/profile');
                     }
                   }>
-                  <Typography textAlign="center">Profile1</Typography>
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
           
                 <MenuItem key={'logout'} onClick={()=>{
