@@ -65,13 +65,16 @@ export default function SingleClient(){
             </Box>
 
             
-                    <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'right', mt:3}}>
-                        <Button  sx={{mr:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
+                    <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
+                        <Button  sx={{ml:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
+                        </Button>
+                        <Button  sx={{ mr:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
+                                Archive  
                         </Button>
                     </Box>
 
-                    <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, mr: 6, ml:6}}>
+                    <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, mr:{md:40}, ml:{md:40}}}>
                         <Box sx={{display: 'block', maxWidth:500}}>
                             {!edit?  
                             <>
