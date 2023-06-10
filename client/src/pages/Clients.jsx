@@ -13,7 +13,9 @@ export default function Clients(){
     const [newClient, setNewClient] = useState('')
     const [newClientError, setNewClientError] = useState(false)
     const [searchInput, setSearchInput] = useState("")
+    const [clientStatus, setClientStatus] = useState(true)
     const navigate = useNavigate();
+
     const handleOpen = () => {
         setOpen(true);
     };
@@ -52,6 +54,12 @@ export default function Clients(){
         }
     }
 
+    const toggleClientStatus = ()=>{
+        setClientStatus(!clientStatus)
+    }
+
+console.log(clients, clientStatus)
+
 return(
     <>
         <Box
@@ -70,15 +78,29 @@ return(
         <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
 
             <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3, ml:{md: 6}}}>
+                
+                {clientStatus? 
                 <Button
-                    color="inherit"
-                    variant="contained"
-                    endIcon={<AddIcon/>}
-                    onClick={handleOpen}
-                    // sx={{backgroundColor:'green'}}
-                    >
-                    Archive
-                </Button>
+                color="inherit"
+                variant="contained"
+                // endIcon={<AddIcon/>}
+                onClick={toggleClientStatus}
+                // sx={{backgroundColor:'green'}}
+                >
+                View Archived
+                </Button> 
+                : 
+                <Button
+                color="success"
+                variant="contained"
+                // endIcon={<AddIcon/>}
+                onClick={toggleClientStatus}
+                sx={{backgroundColor:'green'}}
+                >
+                View Active
+                </Button> 
+            }
+                
             </Box>
 
             <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, mt:3, flexGrow: 3}}>
@@ -87,7 +109,7 @@ return(
 
             <Box sx={{display:'flex', justifyContent: {xs: 'center', md: 'center'}, mt: 3, mr:{md: 6}}}>
                     <Button
-                        color="primary"
+                        color="success"
                         variant="contained"
                         endIcon={<AddIcon/>}
                         onClick={handleOpen}
@@ -102,7 +124,7 @@ return(
             <Box sx={{display:'flex', justifyContent: 'center', mr:6, ml:6, mt: 3, flexGrow: 3}}>
                 <Grid container spacing={3}>
                     {clients ? 
-                            clients.filter((cl)=>cl.client_name.toLowerCase().includes(searchInput)).map((client)=>{
+                             clients.filter((cl)=>cl.client_name.toLowerCase().includes(searchInput) && cl.active == clientStatus ).map((client)=>{
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
