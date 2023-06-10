@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../App";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,13 +21,14 @@ const pages = [
                 {text: 'Modalities', path: '/modalities'}, 
                 {text: 'Interventions', path: '/interventions'}
               ];
-const settings = ['Account', 'Logout'];
+
+
 
 export default function Navbar(){
     const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    
+    const [user, setUser, token, setToken] = useContext(Context);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -44,7 +46,8 @@ export default function Navbar(){
     };
 
     const handleLogout = ()=>{
-      console.log('logout click')
+      localStorage.removeItem('clover-jwt');
+      setUser(undefined)
     }
 
 
@@ -103,7 +106,7 @@ return(
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <MenuItem key={page.text} 
                   onClick={()=>{
                     handleCloseNavMenu()
@@ -111,7 +114,7 @@ return(
                   }}>
                   <Typography textAlign="center">{page.text}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
@@ -178,7 +181,7 @@ return(
                   navigate('/profile');
                     }
                   }>
-                  <Typography textAlign="center">Profile</Typography>
+                  <Typography textAlign="center">Profile1</Typography>
                 </MenuItem>
           
                 <MenuItem key={'logout'} onClick={()=>{

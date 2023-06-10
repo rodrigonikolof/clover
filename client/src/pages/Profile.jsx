@@ -21,7 +21,7 @@ export default function Profile(){
             headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify({
                 password,
-                name : 'Christie123'
+                name : 'Christie1234'
             })
         }).then(res => res.json()).then(data => console.log(data))
     }

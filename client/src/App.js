@@ -49,8 +49,8 @@ if (user){console.log(user.user)}
 
   return (
   <>
+   <Context.Provider value={[user, setUser,token, setToken ]}>
     <Navbar/>
-    <Context.Provider value={[user, setUser,token, setToken ]}>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path='/clients' element={<Clients/>}/>
