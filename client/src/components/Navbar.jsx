@@ -56,7 +56,7 @@ return(
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mb:0.5, mt:0.5 }} component="img" src={logo} maxHeight={60}/> 
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mb:0.5, mt:0.5 }} component="img" src={logo} maxHeight={40}/> 
           <Typography
             variant="h4"
             noWrap
@@ -106,7 +106,7 @@ return(
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {/* {pages.map((page) => (
+              {pages.map((page) => (
                 <MenuItem key={page.text} 
                   onClick={()=>{
                     handleCloseNavMenu()
@@ -114,7 +114,7 @@ return(
                   }}>
                   <Typography textAlign="center">{page.text}</Typography>
                 </MenuItem>
-              ))} */}
+              ))}
             </Menu>
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
@@ -156,7 +156,7 @@ return(
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar sx={{bgcolor:'white', color: 'green'}}>{user.user.name[0]}</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
