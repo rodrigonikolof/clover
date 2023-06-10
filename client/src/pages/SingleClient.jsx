@@ -24,6 +24,7 @@ export default function SingleClient(){
             setClient(data)
             setDescription(data.description)
             setClientName(data.client_name)
+            setActive(data.active)
         })
     }, [])
     
@@ -45,7 +46,22 @@ export default function SingleClient(){
         setEdit(false)
     }
     
-   
+    const toggleStatus = ()=>{
+        setActive(!active)
+        handleStatusUpdate(!active)
+    }
+
+    const handleStatusUpdate = (status)=>{
+        fetch(`/api/v1/clients/${client.id}`,{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+            body: JSON.stringify({
+                active: status
+            })
+        })
+    }
+
+console.log(active)
 
     return(
         <>
@@ -69,7 +85,7 @@ export default function SingleClient(){
                         <Button  sx={{ml:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
                         </Button>
-                        <Button  sx={{ mr:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
+                        <Button  sx={{ mr:{md:40}, color:'green'}} onClick={toggleStatus}>
                                 Archive  
                         </Button>
                     </Box>
