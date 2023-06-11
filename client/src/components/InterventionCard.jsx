@@ -68,7 +68,7 @@ export default function InterventionCard({intervention, handleDelete}){
                         />
                         <Button
                         type="submit"
-                        color="primary"
+                        color="success"
                         variant="contained"
                         sx={{mt:0.1, backgroundColor: 'green'}}
                         >

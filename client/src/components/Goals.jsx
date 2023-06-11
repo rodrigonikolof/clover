@@ -57,6 +57,7 @@ export default function Goals({client_id}){
                         variant="contained"
                         endIcon={<AddIcon/>}
                         onClick={handleSubmit}
+                        color='success'
                     >
                     New Goal
                     </Button>

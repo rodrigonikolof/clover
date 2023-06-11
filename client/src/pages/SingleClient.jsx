@@ -76,17 +76,17 @@ console.log(active)
                         color="textSecondary"
                         gutterBottom
                     >
-                        Client Page - {clientName}
+                        Client Page - {clientName} {active? null : "(Archived)"}
                     </Typography>
             </Box>
 
             
-                    <Box sx={{display:{md:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
+                    <Box sx={{display:{md:'flex',sm:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
                         <Button  sx={{ml:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
                         </Button>
                         <Button  sx={{ mr:{md:40}, color:'green'}} onClick={toggleStatus}>
-                                Archive  
+                                {active? "Archive" : "Unarchive"}
                         </Button>
                     </Box>
 
@@ -121,6 +121,7 @@ console.log(active)
                                     variant="contained"
                                     sx={{mt:1, backgroundColor:'green'}}
                                     onClick={handleUpdate}
+                                    color='success'
                                     >
                                         Save
                                     </Button>
