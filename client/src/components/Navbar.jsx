@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../img/logo.png'
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const pages = [
                 {text: 'Clients', path: '/clients'}, 
@@ -156,7 +157,8 @@ return(
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{bgcolor:'white', color: 'green'}}>{user.user.name[0]}</Avatar>
+                {/* <Avatar sx={{bgcolor:'white', color: 'green'}}>C</Avatar> */}
+                <SettingsIcon fontSize="large" sx={{color:'white'}}/>
               </IconButton>
             </Tooltip>
             <Menu
