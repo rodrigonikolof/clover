@@ -105,9 +105,10 @@ export default function SignUpForm(){
 
                     <Button
                         type="submit"
-                        color="primary"
+                        color="success"
                         variant="contained"
                         endIcon={<KeyboardArrowRightIcon/>}
+                        sx={{backgroundColor:'green'}}
                     >
                         Submit
                     </Button>

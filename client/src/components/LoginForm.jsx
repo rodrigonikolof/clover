@@ -79,9 +79,10 @@ export default function LoginForm(){
                 />
                 <Button
                     type="submit"
-                    color="primary"
+                    color="success"
                     variant="contained"
                     endIcon={<KeyboardArrowRightIcon/>}
+                    sx={{backgroundColor:'green'}}
                 >
                     Submit
                 </Button>
