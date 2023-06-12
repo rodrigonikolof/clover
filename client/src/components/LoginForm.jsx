@@ -44,14 +44,14 @@ export default function LoginForm(){
 
     return(
         <>
-            <Typography 
+            {/* <Typography 
                 variant="h5" 
                 component="h2" 
                 color="textSecondary"
                 gutterBottom
             >
                 Login
-            </Typography>
+            </Typography> */}
             <form
                 onSubmit={handleSubmit}
                 autoComplete="off"
@@ -63,9 +63,12 @@ export default function LoginForm(){
                     label="Email"    
                     fullWidth
                     required 
-                    sx={{marginBottom: 1}}  
+                    sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                        fontFamily: 'monospace',
+                      }}}  
                     error={emailError}  
-                    value={email}        
+                    value={email}   
+                    color="success"     
                 />
                 <TextField 
                     onChange={(e)=>{setPassword(e.target.value)}}
@@ -73,21 +76,26 @@ export default function LoginForm(){
                     type="password"  
                     fullWidth
                     required 
-                    sx={{marginBottom: 1}}  
+                    sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                        fontFamily: 'monospace',
+                      }}}  
                     error={passwordError}  
-                    value={password}        
+                    value={password}    
+                    color="success" 
                 />
                 <Button
                     type="submit"
                     color="success"
                     variant="contained"
                     endIcon={<KeyboardArrowRightIcon/>}
-                    sx={{backgroundColor:'green'}}
+                    sx={{backgroundColor:'green', fontFamily: 'monospace'}}
                 >
                     Submit
                 </Button>
             </form>
-        
+            <Typography sx={{fontFamily:'monospace', color:'green', mt:1}}>
+                Forgotten password?
+            </Typography>
         
         </>
     )

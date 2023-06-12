@@ -49,14 +49,14 @@ export default function SignUpForm(){
     return(
         <>
             
-                <Typography 
+                {/* <Typography 
                     variant="h5" 
                     component="h2" 
                     color="textSecondary"
                     gutterBottom
                 >
                     Sign Up
-                </Typography>
+                </Typography> */}
 
                 <form 
                     onSubmit={handleSubmit}
@@ -68,16 +68,21 @@ export default function SignUpForm(){
                         label="Name"    
                         fullWidth
                         required 
-                        sx={{marginBottom: 1}}  
+                        sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                            fontFamily: 'monospace',
+                          }}}  
                         error={nameError}  
-                        value={name}        
+                        value={name}  
+                        inputProps={{style:{fontFamily: 'monospace'}}}      
                     />
                     <TextField 
                         onChange={(e)=>{setEmail(e.target.value)}}
                         label="Email"    
                         fullWidth
                         required 
-                        sx={{marginBottom: 1}}  
+                        sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                            fontFamily: 'monospace',
+                          }}}  
                         error={emailError}  
                         value={email}        
                     />
@@ -87,7 +92,9 @@ export default function SignUpForm(){
                         type="password"  
                         fullWidth
                         required 
-                        sx={{marginBottom: 1}}  
+                        sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                            fontFamily: 'monospace',
+                          }}}  
                         error={passwordError}  
                         value={password}        
                     />
@@ -98,7 +105,9 @@ export default function SignUpForm(){
                         type="password"  
                         fullWidth
                         required 
-                        sx={{marginBottom: 1}}  
+                        sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                            fontFamily: 'monospace',
+                          }}}  
                         error={passwordConfirmationError}  
                         value={passwordConfirmation}        
                     />
@@ -108,7 +117,7 @@ export default function SignUpForm(){
                         color="success"
                         variant="contained"
                         endIcon={<KeyboardArrowRightIcon/>}
-                        sx={{backgroundColor:'green'}}
+                        sx={{backgroundColor:'green', fontFamily:'monospace'}}
                     >
                         Submit
                     </Button>

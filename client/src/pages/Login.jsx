@@ -70,11 +70,12 @@ export default function Login(){
                                 value={login}
                                 onChange={handleToggle}
                                 exclusive
+                                sx={{mb:1}}
                                 > 
-                                <ToggleButton value={true}>
+                                <ToggleButton value={true} sx={{fontFamily: 'monospace'}}>
                                     Login
                                 </ToggleButton>
-                                <ToggleButton value={false}>
+                                <ToggleButton value={false} sx={{fontFamily: 'monospace'}}>
                                     Sign Up
                                 </ToggleButton>
                             </ToggleButtonGroup>
