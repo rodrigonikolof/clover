@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/LoginForm";
 import logo from '../img/logo.png'
 import { Box, Typography, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 export default function Login(){
+
+    const [login, setLogin] = useState(true)
+
+    const handleToggle = (e,value)=>{
+        if (value == null){return 0}
+        setLogin(value)
+    }
 
 
 
@@ -51,22 +58,34 @@ export default function Login(){
                                 ml: 4
                             }}
                         >
-                            Client goal management made simple. 
+                            Goal management made simple. 
                         </Typography>
                     </Box>
                 </Box>           
             </Box>
 
             <Box sx={{width:0.5, backgroundColor:'beige'}}>
-                <Box sx={{ml:{xs:0, md:10}, mr:{xs:0, md:10}, mt:{xs:0, md:'30vh'}}}>
-                    <LoginForm/>
+                <Box sx={{ml:{xs:0, md:10}, mr:{xs:0, md:10}, mt:{xs:0, md:'25vh'}}}>
+                            <ToggleButtonGroup 
+                                value={login}
+                                onChange={handleToggle}
+                                exclusive
+                                > 
+                                <ToggleButton value={true}>
+                                    Login
+                                </ToggleButton>
+                                <ToggleButton value={false}>
+                                    Sign Up
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+
+                    {login? <LoginForm/> : <SignUpForm/>}
+                    
                 </Box>
                 
                 
             </Box>
         </Box>
-        {/* <SignUpForm/>
-        <LoginForm/> */}
 
     </>
     )
