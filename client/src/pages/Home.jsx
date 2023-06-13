@@ -21,7 +21,7 @@ const [user, setUser, token, setToken] = useContext(Context);
                 color="textSecondary"
                 gutterBottom
                 >
-                    Logged In
+                    Welcome to Clover!
                 </Typography>
             </Box>
 

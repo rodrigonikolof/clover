@@ -36,9 +36,10 @@ export default function NewClientModal({handleClose, open, handleSubmit, setNewC
                         fullWidth 
                         error={newClientError}
                         label="Name"
+                        color="success"
                     />
                     <Button type="submit"
-                            color="primary"
+                            color="success"
                             variant="contained"
                             sx={{mt:6}}
                     >

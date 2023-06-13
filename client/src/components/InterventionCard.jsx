@@ -63,7 +63,7 @@ export default function InterventionCard({intervention, handleDelete}){
                             onChange={(e)=>{setInterventionName(e.target.value)}}
                             defaultValue={interventionName}
                             sx={{maxHeight:-1, mr: 1, width: 8/10}}
-                            
+                            color="success"
                             variant="standard"
                         />
                         <Button

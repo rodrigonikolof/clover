@@ -106,6 +106,7 @@ console.log(active)
                                         defaultValue={client.client_name}
                                         onChange={(e)=>{setClientName(e.target.value)}}
                                         label="Client Name"
+                                        color="success"
                                     />
                                     <TextField
                                     id="outlined-multiline-static"
@@ -115,6 +116,7 @@ console.log(active)
                                     defaultValue= {client.description? client.description : ""}
                                     sx={{minWidth: {xs: 300, md: 500}, mt:1}}
                                     onChange={(e)=>setDescription(e.target.value)}
+                                    color="success"
                                     />
                                     <Button
                                     type="submit"

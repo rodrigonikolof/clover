@@ -87,7 +87,7 @@ return(
                 onClick={toggleClientStatus}
                 sx={{backgroundColor:'rgb(226, 226, 201)'}}
                 >
-                View Archived
+                View Archive
                 </Button> 
                 : 
                 <Button
