@@ -17,6 +17,7 @@ export default function SearchBar({setSearchInput}){
         variant="filled"
         fullWidth
         onChange={handleSearchInput}
+        color="success"
         />  
         
 

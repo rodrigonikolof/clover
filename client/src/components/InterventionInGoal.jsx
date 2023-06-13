@@ -47,7 +47,7 @@ return(
                 <Tooltip title="Toggle 'Completed'">
                     <IconButton onClick={updateStatus}>
                         {completed? 
-                            <CheckCircleOutlineIcon sx={{color:'lightgreen'}} />
+                            <CheckCircleOutlineIcon sx={{color:'green'}} />
                             :
                             <CheckCircleOutlineIcon sx={{color:'lightgrey'}} />
                         }

@@ -58,7 +58,8 @@ export default function Profile(){
                     required 
                     sx={{marginBottom: 1}}  
                     error={passwordError}  
-                    value={password}        
+                    value={password}   
+                    color="success"     
                     />
                     <TextField 
                     onChange={(e)=>{setNewPassword(e.target.value)}}
@@ -68,7 +69,8 @@ export default function Profile(){
                     required 
                     sx={{marginBottom: 1}}  
                     error={newPasswordError}  
-                    value={newPassword}        
+                    value={newPassword}  
+                    color="success"       
                     />
                     <TextField 
                     onChange={(e)=>{setNewPasswordConfirmation(e.target.value)}}
@@ -78,7 +80,8 @@ export default function Profile(){
                     required 
                     sx={{marginBottom: 1}}  
                     error={newPasswordConfirmationError}  
-                    value={newPasswordConfirmation}        
+                    value={newPasswordConfirmation}  
+                    color="success"       
                     />
 
                     {newPasswordConfirmationError? 
@@ -95,6 +98,7 @@ export default function Profile(){
                     variant="contained"
                     endIcon={<KeyboardArrowRightIcon/>}
                     sx={{backgroundColor:'green'}}
+                    color="success" 
                     >
                     Submit
                     </Button>

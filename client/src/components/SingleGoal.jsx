@@ -55,7 +55,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
 
     return(
         <>
-            <Accordion>
+            <Accordion sx={{backgroundColor:'rgb(226, 226, 201)'}}>
                 <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"

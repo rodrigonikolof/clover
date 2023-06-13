@@ -85,7 +85,7 @@ return(
                 variant="contained"
                 // endIcon={<AddIcon/>}
                 onClick={toggleClientStatus}
-                // sx={{backgroundColor:'green'}}
+                sx={{backgroundColor:'rgb(226, 226, 201)'}}
                 >
                 View Archived
                 </Button> 
@@ -128,7 +128,7 @@ return(
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
-                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer', backgroundColor:'lightgrey'}} 
+                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer', backgroundColor:'rgb(226, 226, 201)'}} 
                                             // onClick={()=>navigate('/client-plan', )}
                                         >
                                           <Link to={`${client.id}`} style={{ textDecoration: 'none', color:'black'}}>
