@@ -48,7 +48,7 @@ export default function LoginForm(){
             method: 'PATCH',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
-                email : 'nfrodrigo@hotmail.com'
+                email : 'rodrigo.nikolof@outlook.com'
             })
         }).then(data => data.json()).then(data => console.log(data))
         // .then(r => {
