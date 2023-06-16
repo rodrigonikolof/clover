@@ -10,12 +10,12 @@ Rails.application.routes.draw do
       resources :goals, only: [:index, :show, :update, :create]
       resources :goal_intervention, only: [:show, :create, :destroy, :update]
 
-     
+      get 'password/reset/edit', to: "password_resets#new"
+    patch 'password/reset/edit', to: "password_resets#create"
 
     end
   end
 
-  get 'password/reset/edit', to: "password_resets#new"
-  patch 'password/reset/edit', to: "password_resets#create"
+ 
   
 end

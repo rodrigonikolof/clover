@@ -42,6 +42,23 @@ export default function LoginForm(){
         }
     }
 
+
+    const handleReset =()=>{
+        fetch('/api/v1/password/reset/edit',{
+            method: 'PATCH',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({
+                email : 'nfrodrigo@hotmail.com'
+            })
+        }).then(data => data.json()).then(data => console.log(data))
+        // .then(r => {
+        //     if (r.ok){
+        //         r.json().then(data => console.log(data))
+        //     }
+        // })
+        
+    }
+
     return(
         <>
             {/* <Typography 
@@ -93,7 +110,7 @@ export default function LoginForm(){
                     Submit
                 </Button>
             </form>
-            <Typography sx={{fontFamily:'monospace', color:'green', mt:1}}>
+            <Typography sx={{fontFamily:'monospace', color:'green', mt:1}} onClick={handleReset}>
                 Forgotten password?
             </Typography>
         
