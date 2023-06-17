@@ -3,6 +3,7 @@ import { Context } from "../App";
 import { Box, Typography, Grid, Card, CardActions, CardContent, CardHeader } from "@mui/material";
 import PeopleIcon from '@mui/icons-material/People';
 import FolderIcon from '@mui/icons-material/Folder';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 import DashboardCard from "../components/DashboardCard";
 
 export default function Home(){
@@ -11,6 +12,7 @@ const [user, setUser, token, setToken] = useContext(Context);
 const [clients, setClients] = useState(null)
 const [activeClients, setActiveClients] = useState(null)
 const [archivedClients, setArchivedClients] = useState(null)
+const [interventions, setInterventions] = useState(null)
 
 useEffect(()=>{ 
     fetch('/api/v1/clients',{
@@ -22,7 +24,14 @@ useEffect(()=>{
      
  },[])
 
-
+ useEffect(()=>{
+    fetch('/api/v1/interventions',{
+        method: 'GET',
+        headers: {
+            Authorization : `Bearer ${token}`
+        }
+    }).then(r => r.json()).then(data => setInterventions(data.length))
+},[])
 
 useEffect(()=>{
     if(clients){
@@ -57,9 +66,9 @@ if(clients){console.log(archivedClients)}
                 
                     <Grid container spacing={3}>
 
-                        <DashboardCard title={'Active Clients'} icon={<PeopleIcon/>} info={activeClients} />
-                        <DashboardCard title={'Archived Clients'} icon={<FolderIcon/>} info={archivedClients} />
-                        
+                        <DashboardCard title={'Active Clients'} icon={<PeopleIcon fontSize="large"/>} info={activeClients} />
+                        <DashboardCard title={'Archived Clients'} icon={<FolderIcon fontSize="large"/>} info={archivedClients} />
+                        <DashboardCard title={'Interventions'} icon={<PsychologyIcon fontSize="large"/>} info={interventions} />
                         
 
                     </Grid>
