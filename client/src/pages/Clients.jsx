@@ -58,7 +58,7 @@ export default function Clients(){
         setClientStatus(!clientStatus)
     }
 
-console.log(clients, clientStatus)
+
 
 return(
     <>
