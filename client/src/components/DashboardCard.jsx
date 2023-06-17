@@ -6,8 +6,8 @@ export default function DashboardCard({title, icon, info}){
 
 return(
 <>
-    <Grid item xs={12} md={3}>
-        <Card sx={{minWidth:275, backgroundColor:'lightgrey'}}>
+    <Grid item xs={12} md={4}>
+        <Card sx={{minWidth:275, backgroundColor: 'rgb(226, 226, 201)'}}>
         <Box sx={{minWidth:1, justifyContent:'center', display:'flex', mt:-1, mb: -4}}>
             <CardHeader
                 avatar={icon}
