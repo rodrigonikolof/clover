@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Card, CardActions, CardContent, CardHeader } from "@mui/material";
+import PeopleIcon from '@mui/icons-material/People';
+import DashboardCard from "../components/DashboardCard";
 
 export default function Home(){
 
@@ -39,10 +41,8 @@ useEffect(()=>{
                 <Box>
                     <Grid container spacing={3}>
 
-                        <Grid item xs={12} md={3}>
-                            Hello
-                        </Grid>
-
+                        <DashboardCard title={'Active Clients'} icon={<PeopleIcon/>} info={clientsLength} />
+                        
                         
 
                     </Grid>
