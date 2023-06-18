@@ -128,7 +128,7 @@ return(
                             return(
                                     <Grid item xs={12} md={4} key={client.id}>
                                         <Paper
-                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer', backgroundColor:'rgb(226, 226, 201)'}} 
+                                            sx={{textAlign: 'center', height: 40, lineHeight: '33px',cursor: 'pointer', backgroundColor:'#c9e6b3'}} 
                                             // onClick={()=>navigate('/client-plan', )}
                                         >
                                           <Link to={`${client.id}`} style={{ textDecoration: 'none', color:'black'}}>

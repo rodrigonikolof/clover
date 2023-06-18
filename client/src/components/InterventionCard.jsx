@@ -53,7 +53,7 @@ export default function InterventionCard({intervention, handleDelete}){
     return(
     <>
     
-        <Paper sx={{textAlign: 'center', lineHeight: '10px', maxWidth: 1, minWidth:{xs:12, md:12}, backgroundColor: 'rgb(226, 226, 201)' }}>
+        <Paper sx={{textAlign: 'center', lineHeight: '10px', maxWidth: 1, minWidth:{xs:12, md:12}, backgroundColor: '#c9e6b3' }}>
             <Box sx={{display: 'flex'}}>
                 <Box sx={{flexGrow: 1}}>
                 {showUpdate ? 

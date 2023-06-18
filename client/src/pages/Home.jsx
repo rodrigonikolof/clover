@@ -62,7 +62,7 @@ if(clients){console.log(archivedClients)}
                 color="textSecondary"
                 gutterBottom
                 >
-                    Dashboard
+                    Overview
                 </Typography>
             </Box>
 
@@ -82,7 +82,7 @@ if(clients){console.log(archivedClients)}
 
     
 
-        <Box sx={{display:'block', justifyContent: 'center', mr:6, ml:6, mt: 14}}>   
+        <Box sx={{display:'block', justifyContent: 'center', mr:6, ml:6, mt: 14, mb: 8}}>   
             <Box  sx={{display: 'flex', justifyContent:'left', mb:1}}> 
                 <Typography variant="h6" color="textSecondary">Clover's Quick Guide</Typography> 
             </Box>  
