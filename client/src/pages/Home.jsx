@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import { Box, Typography, Grid, Card, CardActions, CardContent, CardHeader } from "@mui/material";
+import { Box, Typography, Grid, Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import PeopleIcon from '@mui/icons-material/People';
 import FolderIcon from '@mui/icons-material/Folder';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import DashboardCard from "../components/DashboardCard";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DashboardTips from "../components/DashboardTips";
 
 export default function Home(){
 
@@ -13,6 +15,9 @@ const [clients, setClients] = useState(null)
 const [activeClients, setActiveClients] = useState(null)
 const [archivedClients, setArchivedClients] = useState(null)
 const [interventions, setInterventions] = useState(null)
+
+
+
 
 useEffect(()=>{ 
     fetch('/api/v1/clients',{
@@ -57,7 +62,7 @@ if(clients){console.log(archivedClients)}
                 color="textSecondary"
                 gutterBottom
                 >
-                    Welcome to Clover!
+                    Dashboard
                 </Typography>
             </Box>
 
@@ -74,8 +79,15 @@ if(clients){console.log(archivedClients)}
                     </Grid>
                 
             </Box>
-            
 
-        </>
+    
+
+        <Box sx={{display:'block', justifyContent: 'center', mr:6, ml:6, mt: 14}}>   
+            <Box  sx={{display: 'flex', justifyContent:'left', mb:1}}> 
+                <Typography variant="h6" color="textSecondary">Clover's Quick Guide</Typography> 
+            </Box>  
+            <DashboardTips/>
+        </Box>
+    </>
     )
 }

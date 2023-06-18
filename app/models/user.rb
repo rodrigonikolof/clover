@@ -6,4 +6,5 @@ class User < ApplicationRecord
     
     has_many :clients
     has_many :interventions
+    # has_many :goals, through: :clients
 end
