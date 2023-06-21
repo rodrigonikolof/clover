@@ -9,7 +9,10 @@ class PasswordMailer < ApplicationMailer
   #  @token = params[:user].signed_id(purpose: "password_reset", expires_in: 15.minutes)
 
     # mail to: params[:user].email
+    @user = params[:user].object
 
-    mail to: params[:user].email
+    # p "this is it here =>>>>>#{@user[:email]} "
+    mail to: @user[:email]
+    
   end
 end
