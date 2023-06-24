@@ -10,7 +10,7 @@ class Api::V1::PasswordResetsController < ApplicationController
         
         if @user
             #send email
-            puts @user.name
+            
             PasswordMailer.with(user: UserSerializer.new(@user)).reset.deliver_now
             render json: {ok: 'did something'}, status: :ok
         else

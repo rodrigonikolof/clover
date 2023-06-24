@@ -45,7 +45,7 @@ export default function LoginForm(){
 
     const handleReset =()=>{
         fetch('/api/v1/password/reset/edit',{
-            method: 'PATCH',
+            method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify({
                 email : 'rodrigo.nikolof@outlook.com'
