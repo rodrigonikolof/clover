@@ -18,4 +18,8 @@ class Api::V1::PasswordResetsController < ApplicationController
         end
     end
 
+    def edit
+        @user = User.find_signed(params[:token], purpose: "password reset")
+    end
+
 end
