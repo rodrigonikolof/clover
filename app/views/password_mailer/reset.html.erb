@@ -2,10 +2,10 @@
 
 We all forget our passwords sometimes.<br/>
 
-If this has happened to you, here is the link to reset yours (valid for 15min): <br/>
+If this has happened to you, here is code to reset yours (valid for 15min): <br/>
 
-  <%# <%= link_to "Reset password",  api_v1_password_reset_edit_url(token: @token) %> %>
 
-     Here is your password reset code: <%= params[:user].object[:reset_password_token] %>
+
+  <strong>   <%= params[:user].object[:reset_password_token] %> </strong>
  
- <%# <%= link_to "Reset password",  "http://google.com" %> %>
+
