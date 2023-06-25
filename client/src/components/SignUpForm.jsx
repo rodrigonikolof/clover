@@ -73,7 +73,8 @@ export default function SignUpForm(){
                           }}}  
                         error={nameError}  
                         value={name}  
-                        inputProps={{style:{fontFamily: 'monospace'}}}      
+                        inputProps={{style:{fontFamily: 'monospace'}}} 
+                        color="success"      
                     />
                     <TextField 
                         onChange={(e)=>{setEmail(e.target.value)}}
@@ -84,7 +85,8 @@ export default function SignUpForm(){
                             fontFamily: 'monospace',
                           }}}  
                         error={emailError}  
-                        value={email}        
+                        value={email}     
+                        color="success"    
                     />
                     <TextField 
                         onChange={(e)=>{setPassword(e.target.value)}}
@@ -96,7 +98,8 @@ export default function SignUpForm(){
                             fontFamily: 'monospace',
                           }}}  
                         error={passwordError}  
-                        value={password}        
+                        value={password}   
+                        color="success"      
                     />
 
                     <TextField 
@@ -109,7 +112,8 @@ export default function SignUpForm(){
                             fontFamily: 'monospace',
                           }}}  
                         error={passwordConfirmationError}  
-                        value={passwordConfirmation}        
+                        value={passwordConfirmation}     
+                        color="success"    
                     />
 
                     <Button
