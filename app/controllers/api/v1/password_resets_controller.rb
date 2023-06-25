@@ -26,6 +26,9 @@ class Api::V1::PasswordResetsController < ApplicationController
         if @user 
             if password_token_valid?(params[:token], @user)
             # @user.reset_password_token == params[:token].to_s
+
+                
+
                 render json: {ok: 'all good'}, status: :ok
             else
                 render json: {error: 'token expired'}, status: :unprocessable_entity
