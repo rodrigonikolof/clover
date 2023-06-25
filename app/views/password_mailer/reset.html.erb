@@ -6,5 +6,6 @@ If this has happened to you, here is the link to reset yours (valid for 15min): 
 
   <%# <%= link_to "Reset password",  api_v1_password_reset_edit_url(token: @token) %> %>
 
-    <%= link_to "Reset password",  "http://google.com" %>
+     Here is your password reset code: <%= params[:user].object[:reset_password_token] %>
  
+ <%# <%= link_to "Reset password",  "http://google.com" %> %>
