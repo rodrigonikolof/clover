@@ -3,13 +3,18 @@ import { TextField, Button, Typography } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
-export default function PasswordReset(){
-    const [resetCode, setResetCode] = useState(false)
+export default function PasswordReset({setForgotPassword}){
+    const [resetCode, setResetCode] = useState('')
+    const [codeError, setCodeError] = useState(false)
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState(false)
+    const [password, setPassword] = useState('')
+    const [passwordError, setPasswordError] = useState(false)
+    const [codeSent, setCodeSent] = useState(false)
 
 
     const getResetCode = (e)=>{
+        email? setEmailError(false) : setEmailError (true)
         e.preventDefault()
         // if (email){
         //     fetch('/api/v1/password/reset/edit',{
@@ -21,7 +26,7 @@ export default function PasswordReset(){
         //     }).then(data => data.json()).then(data => console.log(data))
         //     setResetCode(true)
         // }
-        setResetCode(true)
+        setCodeSent(true)
     }
 
     const submitPasswordChange = (e)=>{
@@ -31,27 +36,63 @@ export default function PasswordReset(){
 
     return(
     <>
-    {resetCode? 
+    {codeSent? 
         <>
             <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1}}>
                 Please check your email (including Junk folder) for your reset code. 
             </Typography>  
             <form onSubmit={submitPasswordChange}>
-            <TextField 
-            onChange={(e)=>{setEmail(e.target.value)}}
-            label="Email"  
-            placeholder={email}  
-            fullWidth
-            required 
-            sx={{marginBottom: 1, '& .MuiFormLabel-root': {
-                fontFamily: 'monospace',
-                }}}  
-            error={emailError}  
-            value={email}   
-            color="success"     
-        />
-            
-            
+
+                <TextField 
+                onChange={(e)=>{setEmail(e.target.value)}}
+                label="Email"  
+                placeholder={email}  
+                fullWidth
+                required 
+                sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                    fontFamily: 'monospace',
+                    }}}  
+                error={emailError}  
+                value={email}   
+                color="success"     
+                />
+
+                <TextField 
+                onChange={(e)=>{setResetCode(e.target.value)}}
+                label="Reset Code"    
+                fullWidth
+                required 
+                sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                    fontFamily: 'monospace',
+                    }}}  
+                error={codeError}  
+                value={resetCode}   
+                color="success"     
+                />
+
+                <TextField 
+                    onChange={(e)=>{setPassword(e.target.value)}}
+                    label="New Password"  
+                    type="password"  
+                    fullWidth
+                    required 
+                    sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                        fontFamily: 'monospace',
+                      }}}  
+                    error={passwordError}  
+                    value={password}    
+                    color="success" 
+                />
+
+                <Button
+                type="submit"
+                color="success"
+                variant="contained"
+                endIcon={<KeyboardArrowRightIcon/>}
+                sx={{backgroundColor:'green', fontFamily: 'monospace'}}
+                >
+                Submit
+                </Button>
             
             </form>  
         </> 
@@ -93,6 +134,14 @@ export default function PasswordReset(){
 
         </>
     }
+
+            <Typography 
+                sx={{fontFamily:'monospace', color:'green', mt:10, mb:1, textDecoration: 'underline', cursor: 'pointer'}}
+                onClick={()=>setForgotPassword(false)}    
+            >
+                Back to Login
+            </Typography>
+
     </>
 )
 }
