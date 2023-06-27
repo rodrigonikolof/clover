@@ -110,7 +110,7 @@ export default function LoginForm(){
                     Submit
                 </Button>
             </form>
-            <Typography sx={{fontFamily:'monospace', color:'green', mt:1}} onClick={handleReset}>
+            <Typography sx={{fontFamily:'monospace', color:'green', mt:10, cursor:'pointer', textDecoration: 'underline'}} onClick={handleReset}>
                 Forgotten password?
             </Typography>
         
