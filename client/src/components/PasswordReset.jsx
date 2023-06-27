@@ -21,7 +21,7 @@ export default function PasswordReset(){
         //     }).then(data => data.json()).then(data => console.log(data))
         //     setResetCode(true)
         // }
-        // setResetCode(true)
+        setResetCode(true)
     }
 
     const submitPasswordChange = (e)=>{
@@ -36,7 +36,7 @@ export default function PasswordReset(){
             <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1}}>
                 Please check your email (including Junk folder) for your reset code. 
             </Typography>  
-            <form onClick={submitPasswordChange}>
+            <form onSubmit={submitPasswordChange}>
             <TextField 
             onChange={(e)=>{setEmail(e.target.value)}}
             label="Email"  
@@ -63,7 +63,7 @@ export default function PasswordReset(){
                 Forgetting is in our nature. Enter your email to get your password reset code:
         </Typography>
         <form 
-        onClick={getResetCode}
+        onSubmit={getResetCode}
         autoComplete="off"
         noValidate
         >
