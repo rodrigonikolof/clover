@@ -8,7 +8,7 @@ import PasswordReset from "../components/PasswordReset";
 export default function Login(){
 
     const [login, setLogin] = useState(true)
-    const [forgotPassword, setForgotPassword] = useState(true)
+    const [forgotPassword, setForgotPassword] = useState(false)
 
     const handleToggle = (e,value)=>{
         if (value == null){return 0}
@@ -90,7 +90,7 @@ export default function Login(){
                                 </ToggleButton>
                             </ToggleButtonGroup>
 
-                    {login? <LoginForm/> : <SignUpForm/>}
+                    {login? <LoginForm setForgotPassword={setForgotPassword}/> : <SignUpForm/>}
                     
                     </> 
                    

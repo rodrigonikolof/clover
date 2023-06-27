@@ -4,7 +4,7 @@ import {Typography, Button, Container, TextField, MenuItem, FormControl, InputLa
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Context } from "../App";
 
-export default function LoginForm(){
+export default function LoginForm({setForgotPassword}){
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -110,7 +110,7 @@ export default function LoginForm(){
                     Submit
                 </Button>
             </form>
-            <Typography sx={{fontFamily:'monospace', color:'green', mt:10, cursor:'pointer', textDecoration: 'underline'}} onClick={handleReset}>
+            <Typography sx={{fontFamily:'monospace', color:'green', mt:10, cursor:'pointer', textDecoration: 'underline'}} onClick={()=>{setForgotPassword(true)}}>
                 Forgotten password?
             </Typography>
         

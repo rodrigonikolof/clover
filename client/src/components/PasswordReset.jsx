@@ -16,16 +16,16 @@ export default function PasswordReset({setForgotPassword}){
     const getResetCode = (e)=>{
         email? setEmailError(false) : setEmailError (true)
         e.preventDefault()
-        // if (email){
-        //     fetch('/api/v1/password/reset/edit',{
-        //         method: 'POST',
-        //         headers: {"Content-Type" : "application/json"},
-        //         body: JSON.stringify({
-        //             email : email
-        //         })
-        //     }).then(data => data.json()).then(data => console.log(data))
-        //     setResetCode(true)
-        // }
+        if (email){
+            fetch('/api/v1/password/reset/edit',{
+                method: 'POST',
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({
+                    email : email
+                })
+            }).then(data => data.json()).then(data => console.log(data))
+            
+        }
         setCodeSent(true)
     }
 
