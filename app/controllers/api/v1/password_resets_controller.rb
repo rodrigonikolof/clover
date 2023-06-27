@@ -35,7 +35,7 @@ class Api::V1::PasswordResetsController < ApplicationController
             end
 
         else 
-            render json: {error: 'NOT FOUND'}
+            render json: {error: 'NOT FOUND'}, status: :unauthorized
         end
 
     end

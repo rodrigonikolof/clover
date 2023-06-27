@@ -11,8 +11,8 @@ export default function PasswordReset({setForgotPassword}){
     const [password, setPassword] = useState('')
     const [passwordError, setPasswordError] = useState(false)
     const [codeSent, setCodeSent] = useState(false)
-    const [changePasswordWorked, setChangePasswordWorked] = useState(false) 
-    const [changePasswordFailed, setChangePasswordFailed] = useState(false)
+    const [changePasswordWorked, setChangePasswordWorked] = useState(true) 
+    const [changePasswordFailed, setChangePasswordFailed] = useState(true)
 
 
     const getResetCode = (e)=>{
@@ -44,18 +44,24 @@ export default function PasswordReset({setForgotPassword}){
                     password : password 
                 })
             }).then((r)=>{
-                if(r.ok){
+                if(r.status == 200){
                     setEmail('')
                     setResetCode('')
                     setPassword('')
                     setChangePasswordWorked(true)
+                    setChangePasswordFailed(false)
+                    
                 }
                 else{
                     setChangePasswordFailed(true)
+                    setChangePasswordWorked(false)
                 }
+                
             })
         }
     }
+
+
 
     return(
     <>
@@ -155,15 +161,23 @@ export default function PasswordReset({setForgotPassword}){
 
             </form>
             
+            
+        </>
+    }
+
             {changePasswordWorked? 
-            <Typography>Password Changed Successfully </Typography>
+            <Typography
+                sx={{fontFamily:'monospace', backgroundColor:'green', mt:1}}
+            >
+                Password Changed Successfully </Typography>
             : null}
             
             {changePasswordFailed? 
-            <Typography>Something Went Wrong</Typography>
+            <Typography
+                sx={{fontFamily:'monospace', backgroundColor:'warning', mt:1}}
+            >
+                Something Went Wrong</Typography>
             :null}
-        </>
-    }
 
             <Typography 
                 sx={{fontFamily:'monospace', color:'green', mt:10, mb:1, textDecoration: 'underline', cursor: 'pointer'}}
