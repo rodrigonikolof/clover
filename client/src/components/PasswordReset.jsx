@@ -11,6 +11,8 @@ export default function PasswordReset({setForgotPassword}){
     const [password, setPassword] = useState('')
     const [passwordError, setPasswordError] = useState(false)
     const [codeSent, setCodeSent] = useState(false)
+    const [changePasswordWorked, setChangePasswordWorked] = useState(false) 
+    const [changePasswordFailed, setChangePasswordFailed] = useState(false)
 
 
     const getResetCode = (e)=>{
@@ -31,7 +33,28 @@ export default function PasswordReset({setForgotPassword}){
 
     const submitPasswordChange = (e)=>{
         e.preventDefault()
-        
+
+        if(email && resetCode && password){
+            fetch('/api/v1/password/reset/update',{
+                method: 'POST',
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({
+                    email : email,
+                    token : resetCode,
+                    password : password 
+                })
+            }).then((r)=>{
+                if(r.ok){
+                    setEmail('')
+                    setResetCode('')
+                    setPassword('')
+                    setChangePasswordWorked(true)
+                }
+                else{
+                    setChangePasswordFailed(true)
+                }
+            })
+        }
     }
 
     return(
@@ -100,38 +123,45 @@ export default function PasswordReset({setForgotPassword}){
         :
 
         <>
-        <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1}}>
-                Forgetting is in our nature. Enter your email to get your password reset code:
-        </Typography>
-        <form 
-        onSubmit={getResetCode}
-        autoComplete="off"
-        noValidate
-        >
-        <TextField 
-            onChange={(e)=>{setEmail(e.target.value)}}
-            label="Email"    
-            fullWidth
-            required 
-            sx={{marginBottom: 1, '& .MuiFormLabel-root': {
-                fontFamily: 'monospace',
-                }}}  
-            error={emailError}  
-            value={email}   
-            color="success"     
-        />
-        <Button
-            type="submit"
-            color="success"
-            variant="contained"
-            endIcon={<KeyboardArrowRightIcon/>}
-            sx={{backgroundColor:'green', fontFamily: 'monospace'}}
-        >
-            Submit
-        </Button>
+            <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1}}>
+                    Forgetting is in our nature. Enter your email to get your password reset code:
+            </Typography>
+            <form 
+            onSubmit={getResetCode}
+            autoComplete="off"
+            noValidate
+            >
+            <TextField 
+                onChange={(e)=>{setEmail(e.target.value)}}
+                label="Email"    
+                fullWidth
+                required 
+                sx={{marginBottom: 1, '& .MuiFormLabel-root': {
+                    fontFamily: 'monospace',
+                    }}}  
+                error={emailError}  
+                value={email}   
+                color="success"     
+            />
+            <Button
+                type="submit"
+                color="success"
+                variant="contained"
+                endIcon={<KeyboardArrowRightIcon/>}
+                sx={{backgroundColor:'green', fontFamily: 'monospace'}}
+            >
+                Submit
+            </Button>
 
-        </form>
-
+            </form>
+            
+            {changePasswordWorked? 
+            <Typography>Password Changed Successfully </Typography>
+            : null}
+            
+            {changePasswordFailed? 
+            <Typography>Something Went Wrong</Typography>
+            :null}
         </>
     }
 
