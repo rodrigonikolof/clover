@@ -3,10 +3,12 @@ import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/LoginForm";
 import logo from '../img/logo.png'
 import { Box, Typography, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import PasswordReset from "../components/PasswordReset";
 
 export default function Login(){
 
     const [login, setLogin] = useState(true)
+    const [forgotPassword, setForgotPassword] = useState(true)
 
     const handleToggle = (e,value)=>{
         if (value == null){return 0}
@@ -65,7 +67,15 @@ export default function Login(){
             </Box>
 
             <Box sx={{width:0.5, backgroundColor:'beige'}}>
+                            
                 <Box sx={{ml:{xs:0, md:10}, mr:{xs:0, md:10}, mt:{xs:0, md:'25vh'}}}>
+
+                {forgotPassword? 
+
+                    <PasswordReset/>
+
+                    :
+                    <>
                             <ToggleButtonGroup 
                                 value={login}
                                 onChange={handleToggle}
@@ -82,6 +92,10 @@ export default function Login(){
 
                     {login? <LoginForm/> : <SignUpForm/>}
                     
+                    </> 
+                   
+                   
+                        }
                 </Box>
                 
                 
