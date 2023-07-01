@@ -71,9 +71,9 @@ if(clients){console.log(archivedClients)}
                 
                     <Grid container spacing={3}>
 
-                        <DashboardCard title={'Active Clients'} icon={<PeopleIcon fontSize="large"/>} info={activeClients} />
-                        <DashboardCard title={'Archived Clients'} icon={<FolderIcon fontSize="large"/>} info={archivedClients} />
-                        <DashboardCard title={'Interventions'} icon={<PsychologyIcon fontSize="large"/>} info={interventions} />
+                        <DashboardCard title={'Active Clients'} icon={<PeopleIcon fontSize="large" sx={{ color: "#2a4d17"}}/>} info={activeClients} />
+                        <DashboardCard title={'Archived Clients'} icon={<FolderIcon fontSize="large" sx={{ color: "#2a4d17"}}/>} info={archivedClients} />
+                        <DashboardCard title={'Interventions'} icon={<PsychologyIcon fontSize="large" sx={{ color: "#2a4d17"}}/>} info={interventions} />
                         
 
                     </Grid>
