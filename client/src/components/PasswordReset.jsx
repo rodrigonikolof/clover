@@ -11,8 +11,8 @@ export default function PasswordReset({setForgotPassword}){
     const [password, setPassword] = useState('')
     const [passwordError, setPasswordError] = useState(false)
     const [codeSent, setCodeSent] = useState(false)
-    const [changePasswordWorked, setChangePasswordWorked] = useState(true) 
-    const [changePasswordFailed, setChangePasswordFailed] = useState(true)
+    const [changePasswordWorked, setChangePasswordWorked] = useState(false) 
+    const [changePasswordFailed, setChangePasswordFailed] = useState(false)
 
 
     const getResetCode = (e)=>{
@@ -174,7 +174,7 @@ export default function PasswordReset({setForgotPassword}){
             
             {changePasswordFailed? 
             <Typography
-                sx={{fontFamily:'monospace', backgroundColor:'warning', mt:1}}
+                sx={{fontFamily:'monospace', color:'red', mt:1, backgroundColor: 'lightgrey'}}
             >
                 Something Went Wrong</Typography>
             :null}
