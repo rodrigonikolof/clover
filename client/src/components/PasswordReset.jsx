@@ -129,8 +129,14 @@ export default function PasswordReset({setForgotPassword}){
         :
 
         <>
+            <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1, fontStyle: 'italic'}}>
+                    "To forgive is human. To forget is divine." J.Grand
+            </Typography>
+            <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1, fontWeight: 'bold'}}>
+                    Congratulations! You are divine! 
+            </Typography>
             <Typography sx={{fontFamily:'monospace', color:'grey', mt:1, mb:1}}>
-                    Forgetting is in our nature. Enter your email to get your password reset code:
+                    Enter your email to get your password reset code:
             </Typography>
             <form 
             onSubmit={getResetCode}
