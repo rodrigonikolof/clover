@@ -4,7 +4,7 @@ import {Typography, Button, Container, TextField, MenuItem, FormControl, InputLa
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Context } from "../App";
 
-export default function LoginForm({setForgotPassword}){
+export default function LoginForm({setForgotPassword, accountCreated}){
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -32,7 +32,7 @@ export default function LoginForm({setForgotPassword}){
                             setUser(data.user);
                             setToken(data.jwt);
                             localStorage.setItem("clover-jwt", data.jwt)
-                            console.log(data.jwt)
+                            
                         })
                     } else {
                         r.json().then((err)=> setErrorFromServer(err.errors));
@@ -110,6 +110,16 @@ export default function LoginForm({setForgotPassword}){
                     Submit
                 </Button>
             </form>
+                      
+            {accountCreated? 
+                        <Typography
+                        sx={{fontFamily:'monospace', backgroundColor:'green', mt:1, color:'white', pl:3}}
+                        >
+                        Account Created Successfully </Typography>
+                        :
+                        null
+            }
+
             <Typography sx={{fontFamily:'monospace', color:'green', mt:10, cursor:'pointer', textDecoration: 'underline'}} onClick={()=>{setForgotPassword(true)}}>
                 Forgotten password?
             </Typography>

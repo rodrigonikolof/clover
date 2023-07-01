@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import {Typography, Button, Container, TextField, MenuItem, FormControl, InputLabel, Select} from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-export default function SignUpForm(){
+export default function SignUpForm({setLogin, setAccountCreated}){
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -36,7 +36,8 @@ export default function SignUpForm(){
             }).then((r)=>{
                 if (r.ok){
                     // r.json().then((user) => onLogin(user));
-                    r.json().then(data => console.log(data))
+                    setLogin(true)
+                    setAccountCreated(true)
                 } else {
                     // r.json().then((err)=>setErrorFromServer(err.errors))
                     // .then(console.log(errorFromServer))

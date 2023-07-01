@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/LoginForm";
 import logo from '../img/logo.png'
@@ -9,13 +9,20 @@ export default function Login(){
 
     const [login, setLogin] = useState(true)
     const [forgotPassword, setForgotPassword] = useState(false)
+    const [accountCreated, setAccountCreated] = useState(false)
 
     const handleToggle = (e,value)=>{
         if (value == null){return 0}
         setLogin(value)
     }
 
-
+    useEffect(()=>{
+        setTimeout(hideCreated, 4000)
+    }, [accountCreated])
+    
+    const hideCreated = ()=>{
+        setAccountCreated(false)
+    }
 
     return(
     <>
@@ -76,6 +83,7 @@ export default function Login(){
 
                     :
                     <>
+
                             <ToggleButtonGroup 
                                 value={login}
                                 onChange={handleToggle}
@@ -90,13 +98,17 @@ export default function Login(){
                                 </ToggleButton>
                             </ToggleButtonGroup>
 
-                    {login? <LoginForm setForgotPassword={setForgotPassword}/> : <SignUpForm/>}
+                    {login? 
+                        <LoginForm setForgotPassword={setForgotPassword} accountCreated={accountCreated}/> 
+                        : 
+                        <SignUpForm setLogin={setLogin} setAccountCreated={setAccountCreated}/>
+                    }
                     
                     </> 
                    
-                   
                         }
                 </Box>
+                
                 
                 
             </Box>
