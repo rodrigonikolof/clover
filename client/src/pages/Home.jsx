@@ -49,7 +49,7 @@ useEffect(()=>{
 
 }, [clients])
 
-if(clients){console.log(archivedClients)}
+
 
     return(
         <>

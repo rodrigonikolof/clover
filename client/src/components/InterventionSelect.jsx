@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from "react";
-import { Autocomplete, TextField, Button, Box, inputAdornmentClasses } from "@mui/material";
+import React, {useState, useContext} from "react";
+import { Autocomplete, TextField, Button, Box } from "@mui/material";
 import { Context } from "../App";
 
 export default function InterventionSelect({interventions, setInterventions, setGoalInterventions, goalInterventions, goal}){
