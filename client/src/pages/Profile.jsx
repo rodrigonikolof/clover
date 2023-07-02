@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../App";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -13,17 +13,44 @@ export default function Profile(){
     const [newPasswordConfirmationError, setNewPasswordConfirmationError] = useState(false)
     const [updateConfirmation, setUpdateConfirmation] = useState(false)
     const [user, setUser, token, setToken] = useContext(Context);
+    const [name, setName] = useState(user.user.name)
+    const [email, setEmail] = useState(user.user.email)
+    const [updated, setUpdated] = useState(false)
+    const [failed, setFailed] = useState(true)
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        fetch(`/api/v1/users/${user.user.id}`,{
-            method: 'PATCH',
-            headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
-            body: JSON.stringify({
-                password,
-                name : 'Christie1234'
-            })
-        }).then(res => res.json()).then(data => console.log(data))
+        if(user && email && password){
+            fetch(`/api/v1/users/${user.user.id}`,{
+                method: 'PATCH',
+                headers: {"Content-Type" : "application/json", Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    password,
+                    name : name, 
+                    email : email
+                })
+            }).then((r) =>{
+                if(r.ok){
+                    setUpdated(true)
+                }
+                else{
+                    setFailed(true)
+                }
+            } )
+        }
+    }
+
+    useEffect(()=>{
+        setTimeout(hideMessage, 4000)
+    }, [failed])
+
+    useEffect(()=>{
+        setTimeout(hideMessage, 4000)
+    }, [updated])
+
+    const hideMessage = ()=>{
+        setFailed(false)
+        setUpdated(false)
     }
 
     return(
@@ -44,12 +71,35 @@ export default function Profile(){
 
         <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
             <Box sx={{maxWidth:300}}>
-                
+
+             {user? 
+
                 <form
                 onSubmit={handleSubmit}
                 autoComplete="off"
                 noValidate
                 >
+                    <TextField 
+                    onChange={(e)=>{setName(e.target.value)}}
+                    label="Name"  
+                    // type="password"  
+                    // placeholder={user.user.name}
+                    fullWidth
+                    required 
+                    sx={{marginBottom: 1}}  
+                    // error={passwordError}  
+                    defaultValue={user.user.name}   
+                    color="success"     
+                    />
+                    <TextField 
+                    onChange={(e)=>{setEmail(e.target.value)}}
+                    label="Email"  
+                    fullWidth
+                    required 
+                    sx={{marginBottom: 1}}   
+                    defaultValue={user.user.email}   
+                    color="success"     
+                    />
                     <TextField 
                     onChange={(e)=>{setPassword(e.target.value)}}
                     label="Current Password"  
@@ -61,12 +111,12 @@ export default function Profile(){
                     value={password}   
                     color="success"     
                     />
-                    <TextField 
+                    {/* <TextField 
                     onChange={(e)=>{setNewPassword(e.target.value)}}
                     label="New Password"  
                     type="password"  
                     fullWidth
-                    required 
+                    required
                     sx={{marginBottom: 1}}  
                     error={newPasswordError}  
                     value={newPassword}  
@@ -77,21 +127,22 @@ export default function Profile(){
                     label="Confirm New Password"  
                     type="password"  
                     fullWidth
-                    required 
+                    required
                     sx={{marginBottom: 1}}  
                     error={newPasswordConfirmationError}  
                     value={newPasswordConfirmation}  
                     color="success"       
-                    />
+                    />  */}
+                    
 
-                    {newPasswordConfirmationError? 
+                    {/* {newPasswordConfirmationError? 
                         <Typography sx={{color:'red', mb: 1}}>Oops! Passwords need to match...</Typography>
                         : null
                     }
                     {updateConfirmation? 
                         <Typography sx={{color:'green', mb: 1}}>Password updated succesfully 😄</Typography>
                         : null
-                    }
+                    } */}
 
                     <Button
                     type="submit"
@@ -104,6 +155,22 @@ export default function Profile(){
                     </Button>
 
                 </form>
+
+                : 
+                null}
+                {updated? 
+                    <Typography
+                    sx={{backgroundColor:'green', mt:1}}
+                    >
+                        Details Updated Successfully </Typography>
+                    : null}
+
+                {failed? 
+                    <Typography
+                    sx={{ color:'red', mt:1, backgroundColor: 'lightgrey'}}
+                    >
+                        Something Went Wrong</Typography>
+                    :null}
 
             </Box>
         </Box>
