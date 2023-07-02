@@ -80,7 +80,14 @@ export default function InterventionSelect({interventions, setInterventions, set
                     <Autocomplete
                     id="free-solo-demo"
                     freeSolo
-                    sx={{width:9/10}}
+                    sx={{width:9/10, 
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            border: 'none'
+                        },
+                        "&.Mui-focused .MuiInputLabel-outlined": {
+                            color: "green"
+                          }
+                    }}
                     options={interventions.map((option) => option.intervention_name)}
                     renderInput={(params) => <TextField {...params} label="Interventions" />}
                     onChange={(e,input)=>handleChange(e, input)}
