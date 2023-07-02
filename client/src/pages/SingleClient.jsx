@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../App";
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box, Typography, Button, TextField, Paper } from "@mui/material";
 import Goals from "../components/Goals";
 
 export default function SingleClient(){
@@ -94,40 +94,51 @@ console.log(active)
                         <Box sx={{display: 'block', maxWidth:500}}>
                             {!edit?  
                             <>
-                            <Box> <Typography>Name: {clientName}</Typography> </Box>
-                            <Box sx={{mt:3}}> Description: {description? description : "No description to show"}</Box>
+                            <Paper sx={{backgroundColor:'#c9e6b3'}}>
+                                <Box sx={{p:2}}> 
+                                    <Typography variant="h6" sx={{color: "#2a4d17", fontWeight:'bold'}}> Name </Typography> 
+                                    <Typography variant="h6" sx={{color:"#2a4d17"}}>{clientName}</Typography>
+                                </Box>
+                                <Box sx={{mt:-2, p:2}}> 
+                                    <Typography variant="h6" sx={{color: "#2a4d17", fontWeight:'bold'}}>Description:</Typography>
+                                    <Typography variant="h6" sx={{color:"#2a4d17"}}>{description? description : "No description to show"}</Typography>
+                                    
+                                </Box>
+                            </Paper>
                             </>
                                 :
 
                             <Box sx={{display:'block', maxWidth:500}}>
-                                <form>
-                                    
-                                    <TextField
-                                        defaultValue={client.client_name}
-                                        onChange={(e)=>{setClientName(e.target.value)}}
-                                        label="Client Name"
+                                <Paper sx={{backgroundColor:'#c9e6b3', p:2}}>
+                                    <form>
+                                        
+                                        <TextField
+                                            defaultValue={client.client_name}
+                                            onChange={(e)=>{setClientName(e.target.value)}}
+                                            label="Client Name"
+                                            color="success"
+                                        />
+                                        <TextField
+                                        id="outlined-multiline-static"
+                                        label="Client Description"
+                                        multiline
+                                        rows={5}
+                                        defaultValue= {client.description? client.description : ""}
+                                        sx={{minWidth: {xs: 300, md: 400}, mt:1}}
+                                        onChange={(e)=>setDescription(e.target.value)}
                                         color="success"
-                                    />
-                                    <TextField
-                                    id="outlined-multiline-static"
-                                    label="Client Description"
-                                    multiline
-                                    rows={5}
-                                    defaultValue= {client.description? client.description : ""}
-                                    sx={{minWidth: {xs: 300, md: 500}, mt:1}}
-                                    onChange={(e)=>setDescription(e.target.value)}
-                                    color="success"
-                                    />
-                                    <Button
-                                    type="submit"
-                                    variant="contained"
-                                    sx={{mt:1, backgroundColor:'green'}}
-                                    onClick={handleUpdate}
-                                    color='success'
-                                    >
-                                        Save
-                                    </Button>
-                                </form>
+                                        />
+                                        <Button
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{mt:1, backgroundColor:'green'}}
+                                        onClick={handleUpdate}
+                                        color='success'
+                                        >
+                                            Save
+                                        </Button>
+                                    </form>
+                                </Paper>
                             </Box>
                             
                             }                
@@ -140,7 +151,7 @@ console.log(active)
             : null }
             
             {client? 
-                <Box sx={{display: 'flex', justifyContent: 'center', mt: 3, ml:6, mr: 6}}>
+                <Box sx={{display: 'flex', justifyContent: 'center', mt: 0, ml:6, mr: 6}}>
                     <Goals client_id={client.id}/>
                 </Box>
             
