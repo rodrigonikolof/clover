@@ -16,7 +16,7 @@ export default function Profile(){
     const [name, setName] = useState(user.user.name)
     const [email, setEmail] = useState(user.user.email)
     const [updated, setUpdated] = useState(false)
-    const [failed, setFailed] = useState(true)
+    const [failed, setFailed] = useState(false)
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -55,7 +55,7 @@ export default function Profile(){
 
     return(
     <>
-
+    
         <Box
         sx={{display: 'flex', justifyContent: 'center', mt: 3}}
         >
@@ -175,6 +175,7 @@ export default function Profile(){
             </Box>
         </Box>
 
+    
     </>
     )
 

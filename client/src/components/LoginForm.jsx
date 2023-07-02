@@ -3,6 +3,7 @@ import {useState, useEffect, useContext} from 'react';
 import {Typography, Button, Container, TextField, MenuItem, FormControl, InputLabel, Select} from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Context } from "../App";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({setForgotPassword, accountCreated}){
 
@@ -11,6 +12,7 @@ export default function LoginForm({setForgotPassword, accountCreated}){
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
     const [errorFromServer, setErrorFromServer] = useState([])
+    const navigate = useNavigate()
 
     const [user, setUser, token, setToken] = useContext(Context);
     
@@ -32,7 +34,7 @@ export default function LoginForm({setForgotPassword, accountCreated}){
                             setUser(data.user);
                             setToken(data.jwt);
                             localStorage.setItem("clover-jwt", data.jwt)
-                            
+                            navigate('/')
                         })
                     } else {
                         r.json().then((err)=> setErrorFromServer(err.errors));
