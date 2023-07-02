@@ -56,124 +56,125 @@ export default function Profile(){
     return(
     <>
     
-        <Box
-        sx={{display: 'flex', justifyContent: 'center', mt: 3}}
-        >
-            <Typography
-                variant="h5" 
-                component="h2" 
-                color="textSecondary"
-                gutterBottom
-                >
-                    Profile
-            </Typography>
-        </Box>
-
-        <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
-            <Box sx={{maxWidth:300}}>
-
-             {user? 
-
-                <form
-                onSubmit={handleSubmit}
-                autoComplete="off"
-                noValidate
-                >
-                    <TextField 
-                    onChange={(e)=>{setName(e.target.value)}}
-                    label="Name"  
-                    // type="password"  
-                    // placeholder={user.user.name}
-                    fullWidth
-                    required 
-                    sx={{marginBottom: 1}}  
-                    // error={passwordError}  
-                    defaultValue={user.user.name}   
-                    color="success"     
-                    />
-                    <TextField 
-                    onChange={(e)=>{setEmail(e.target.value)}}
-                    label="Email"  
-                    fullWidth
-                    required 
-                    sx={{marginBottom: 1}}   
-                    defaultValue={user.user.email}   
-                    color="success"     
-                    />
-                    <TextField 
-                    onChange={(e)=>{setPassword(e.target.value)}}
-                    label="Current Password"  
-                    type="password"  
-                    fullWidth
-                    required 
-                    sx={{marginBottom: 1}}  
-                    error={passwordError}  
-                    value={password}   
-                    color="success"     
-                    />
-                    {/* <TextField 
-                    onChange={(e)=>{setNewPassword(e.target.value)}}
-                    label="New Password"  
-                    type="password"  
-                    fullWidth
-                    required
-                    sx={{marginBottom: 1}}  
-                    error={newPasswordError}  
-                    value={newPassword}  
-                    color="success"       
-                    />
-                    <TextField 
-                    onChange={(e)=>{setNewPasswordConfirmation(e.target.value)}}
-                    label="Confirm New Password"  
-                    type="password"  
-                    fullWidth
-                    required
-                    sx={{marginBottom: 1}}  
-                    error={newPasswordConfirmationError}  
-                    value={newPasswordConfirmation}  
-                    color="success"       
-                    />  */}
-                    
-
-                    {/* {newPasswordConfirmationError? 
-                        <Typography sx={{color:'red', mb: 1}}>Oops! Passwords need to match...</Typography>
-                        : null
-                    }
-                    {updateConfirmation? 
-                        <Typography sx={{color:'green', mb: 1}}>Password updated succesfully 😄</Typography>
-                        : null
-                    } */}
-
-                    <Button
-                    type="submit"
-                    variant="contained"
-                    endIcon={<KeyboardArrowRightIcon/>}
-                    sx={{backgroundColor:'green'}}
-                    color="success" 
+    
+            <Box
+            sx={{display: 'flex', justifyContent: 'center', mt: 3}}
+            >
+                <Typography
+                    variant="h5" 
+                    component="h2" 
+                    color="textSecondary"
+                    gutterBottom
                     >
-                    Submit
-                    </Button>
-
-                </form>
-
-                : 
-                null}
-                {updated? 
-                    <Typography
-                    sx={{backgroundColor:'green', mt:1}}
-                    >
-                        Details Updated Successfully </Typography>
-                    : null}
-
-                {failed? 
-                    <Typography
-                    sx={{ color:'red', mt:1, backgroundColor: 'lightgrey'}}
-                    >
-                        Something Went Wrong</Typography>
-                    :null}
-
+                        Profile
+                </Typography>
             </Box>
-        </Box>
+
+            <Box sx={{display:'flex', justifyContent: 'center', mt:3}}>
+                <Box sx={{maxWidth:300}}>
+
+                {user? 
+
+                    <form
+                    onSubmit={handleSubmit}
+                    autoComplete="off"
+                    noValidate
+                    >
+                        <TextField 
+                        onChange={(e)=>{setName(e.target.value)}}
+                        label="Name"  
+                        // type="password"  
+                        // placeholder={user.user.name}
+                        fullWidth
+                        required 
+                        sx={{marginBottom: 1}}  
+                        // error={passwordError}  
+                        defaultValue={user.user.name}   
+                        color="success"     
+                        />
+                        <TextField 
+                        onChange={(e)=>{setEmail(e.target.value)}}
+                        label="Email"  
+                        fullWidth
+                        required 
+                        sx={{marginBottom: 1}}   
+                        defaultValue={user.user.email}   
+                        color="success"     
+                        />
+                        <TextField 
+                        onChange={(e)=>{setPassword(e.target.value)}}
+                        label="Current Password"  
+                        type="password"  
+                        fullWidth
+                        required 
+                        sx={{marginBottom: 1}}  
+                        error={passwordError}  
+                        value={password}   
+                        color="success"     
+                        />
+                        {/* <TextField 
+                        onChange={(e)=>{setNewPassword(e.target.value)}}
+                        label="New Password"  
+                        type="password"  
+                        fullWidth
+                        required
+                        sx={{marginBottom: 1}}  
+                        error={newPasswordError}  
+                        value={newPassword}  
+                        color="success"       
+                        />
+                        <TextField 
+                        onChange={(e)=>{setNewPasswordConfirmation(e.target.value)}}
+                        label="Confirm New Password"  
+                        type="password"  
+                        fullWidth
+                        required
+                        sx={{marginBottom: 1}}  
+                        error={newPasswordConfirmationError}  
+                        value={newPasswordConfirmation}  
+                        color="success"       
+                        />  */}
+                        
+
+                        {/* {newPasswordConfirmationError? 
+                            <Typography sx={{color:'red', mb: 1}}>Oops! Passwords need to match...</Typography>
+                            : null
+                        }
+                        {updateConfirmation? 
+                            <Typography sx={{color:'green', mb: 1}}>Password updated succesfully 😄</Typography>
+                            : null
+                        } */}
+
+                        <Button
+                        type="submit"
+                        variant="contained"
+                        endIcon={<KeyboardArrowRightIcon/>}
+                        sx={{backgroundColor:'green'}}
+                        color="success" 
+                        >
+                        Submit
+                        </Button>
+
+                    </form>
+
+                    : 
+                    null}
+                    {updated? 
+                        <Typography
+                        sx={{backgroundColor:'green', mt:1}}
+                        >
+                            Details Updated Successfully </Typography>
+                        : null}
+
+                    {failed? 
+                        <Typography
+                        sx={{ color:'red', mt:1, backgroundColor: 'lightgrey'}}
+                        >
+                            Something Went Wrong</Typography>
+                        :null}
+
+                </Box>
+            </Box>
 
     
     </>
