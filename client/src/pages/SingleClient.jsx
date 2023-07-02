@@ -117,6 +117,10 @@ console.log(active)
                                             onChange={(e)=>{setClientName(e.target.value)}}
                                             label="Client Name"
                                             color="success"
+                                            inputProps={{style: {color:"#2a4d17", fontSize:20}}}
+                                            sx={{'& .MuiFormLabel-root': {
+                                                fontSize: 20,
+                                              }}}
                                         />
                                         <TextField
                                         id="outlined-multiline-static"
@@ -124,9 +128,12 @@ console.log(active)
                                         multiline
                                         rows={5}
                                         defaultValue= {client.description? client.description : ""}
-                                        sx={{minWidth: {xs: 300, md: 400}, mt:1}}
+                                        sx={{minWidth: {xs: 400, md: 400}, mt:1, '& .MuiFormLabel-root': {
+                                            fontSize: 20,
+                                          }}}
                                         onChange={(e)=>setDescription(e.target.value)}
                                         color="success"
+                                        inputProps={{style: {color:"#2a4d17", fontSize:20}}}
                                         />
                                         <Button
                                         type="submit"
