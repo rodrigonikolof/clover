@@ -67,7 +67,14 @@ export default function Goals({client_id}){
                 {goals? 
                     goals.map((goal)=>{
                     return   (
-                        <SingleGoal key={goal.id} goal={goal} interventions={interventions} setInterventions={setInterventions}/>
+                        <SingleGoal 
+                            key={goal.id} 
+                            goal={goal} 
+                            interventions={interventions} 
+                            setInterventions={setInterventions}
+                            setGoals={setGoals}
+                            goals={goals}
+                        />
                     )
                     })    
                     :

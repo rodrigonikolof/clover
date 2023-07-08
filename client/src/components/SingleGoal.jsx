@@ -7,7 +7,7 @@ import { Context } from "../App";
 import InterventionSelect from "./InterventionSelect";
 import InterventionInGoal from "./InterventionInGoal";
 
-export default function SingleGoal({goal, interventions, setInterventions}){
+export default function SingleGoal({goal, interventions, setInterventions, setGoals, goals}){
 
     const [user, setUser, token, setToken] = useContext(Context);
     const [showUpdate, setShowUpdate] = useState(false)
@@ -66,6 +66,16 @@ export default function SingleGoal({goal, interventions, setInterventions}){
     setGoalInterventions(goalInterventions.filter(gi => gi.id != id))
    }
 
+   const handleDeleteGoal = (id)=>{
+    fetch(`/api/v1/goals/${id}`,{
+        method: 'DELETE',
+        headers: {Authorization : `Bearer ${token}`}
+    })
+    setGoals(goals.filter(goal => goal.id != id))
+    console.log(id)
+   }
+
+
     return(
         <>
             <Accordion sx={{backgroundColor:'rgb(226, 226, 201)'}}>
@@ -97,7 +107,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                     <Tooltip title="Edit">
                         <IconButton onClick={toggleShowUpdate}><EditNoteIcon/></IconButton>
                     </Tooltip>
-                    <Tooltip>
+                    <Tooltip title='Delete Goal'>
                         <IconButton onClick={handleClick} aria-describedby={popoverID}><DeleteIcon/></IconButton>
                     </Tooltip>
                     <Popover
@@ -121,7 +131,7 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                                     variant="contained"
                                     sx={{mt:0.5, ml: 1.2}}
                                     color="error"
-                                    onClick={()=>{}}
+                                    onClick={()=>{handleDeleteGoal(goal.id)}}
                                     >
                                         Delete
                                     </Button>
