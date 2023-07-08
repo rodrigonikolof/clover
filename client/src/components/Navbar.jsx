@@ -17,7 +17,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 const pages = [
                 {text: 'Clients', path: '/clients'}, 
-                {text: 'Modalities', path: '/modalities'}, 
+                // {text: 'Modalities', path: '/modalities'}, 
                 {text: 'Interventions', path: '/interventions'}
               ];
 

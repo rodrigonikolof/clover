@@ -86,7 +86,8 @@ export default function InterventionSelect({interventions, setInterventions, set
                         },
                         "&.Mui-focused .MuiInputLabel-outlined": {
                             color: "green"
-                          }
+                          },
+                          
                     }}
                     options={interventions.map((option) => option.intervention_name)}
                     renderInput={(params) => <TextField {...params} label="Interventions" />}
