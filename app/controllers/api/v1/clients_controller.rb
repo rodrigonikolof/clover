@@ -36,6 +36,17 @@ class Api::V1::ClientsController < ApplicationController
         end
     end
 
+    def destroy
+        @client = Client.find(params[:id])
+
+        if @client && @client[:user_id] == current_user.id
+            @client.destroy
+            render json: {ok: 'Client deleted'}, status: :ok
+        else
+            render json: {error: 'Unable to delete client'}
+        end
+    end
+
     private
 
     def client_params

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
       
-      resources :clients, only: [:index, :create, :show, :update]
+      resources :clients, only: [:index, :create, :show, :update, :destroy]
       resources :interventions, only: [:index, :update, :destroy, :create]
       resources :goals, only: [:index, :show, :update, :create]
       resources :goal_intervention, only: [:show, :create, :destroy, :update]
