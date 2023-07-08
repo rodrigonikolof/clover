@@ -101,7 +101,7 @@ export default function SingleGoal({goal, interventions, setInterventions, setGo
                                 > Save </Button>
                             </form>
                             : 
-                            <Typography variant="h6" color='textSecondary'>{goalName}</Typography>} 
+                            <Typography variant="h5" color='textSecondary'>{goalName}</Typography>} 
                     </Box>
                     <Tooltip title="Edit">
                         <IconButton onClick={toggleShowUpdate}><EditNoteIcon/></IconButton>

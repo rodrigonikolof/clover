@@ -41,7 +41,12 @@ return(
 
         <Box display='flex' sx={{mr: 0, ml: 1}}>
 
-            <Box sx={{flexGrow:1, mt: 1}}> - {goalIntervention.intervention.intervention_name} </Box>
+            <Box sx={{flexGrow:1, mt: 1}}> 
+                <Typography variant="h6" color="textSecondary"> 
+                   - {goalIntervention.intervention.intervention_name} 
+                </Typography> 
+            
+            </Box>
 
             <Box>
                 <Tooltip title="Toggle 'Completed'">
