@@ -70,7 +70,7 @@ export default function SingleClient(){
         setOpen(false);
     };
 
-
+    console.log(client)
 
     return(
         <>
@@ -180,12 +180,15 @@ export default function SingleClient(){
             null    
             }
 
-
-            <ConfirmDeleteClientModal
-                handleClose={handleClose} 
-                open={open}
-                clientName={clientName}
-            />
+            {client? 
+                <>
+                    <ConfirmDeleteClientModal
+                        handleClose={handleClose} 
+                        open={open}
+                        client={client}
+                    />
+                </>
+            : null}
         </>
     )
 }
