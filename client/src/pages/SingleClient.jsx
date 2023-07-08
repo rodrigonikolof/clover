@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../App";
 import { Box, Typography, Button, TextField, Paper } from "@mui/material";
 import Goals from "../components/Goals";
+import ConfirmDeleteClientModal from "../components/ConfirmDeleteClientModal";
 
 export default function SingleClient(){
     const [user, setUser, token, setToken] = useContext(Context);
@@ -11,6 +12,7 @@ export default function SingleClient(){
     const [clientName, setClientName] = useState('')
     const [active, setActive] = useState('')
     const [edit, setEdit] = useState(false)
+    const [open, setOpen] = useState(false);
 
     const params = useParams()
    
@@ -61,7 +63,14 @@ export default function SingleClient(){
         })
     }
 
-console.log(active)
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
 
     return(
         <>
@@ -82,11 +91,14 @@ console.log(active)
 
             
                     <Box sx={{display:{md:'flex',sm:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
-                        <Button  sx={{ml:{md:40}, color:'green'}} onClick={()=>setEdit(!edit)}>
+                        <Button  sx={{ color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
                         </Button>
-                        <Button  sx={{ mr:{md:40}, color:'green'}} onClick={toggleStatus}>
+                        <Button  sx={{ color:'green'}} onClick={toggleStatus}>
                                 {active? "Archive" : "Unarchive"}
+                        </Button>
+                        <Button color='error' onClick={handleOpen}>
+                            Delete
                         </Button>
                     </Box>
 
@@ -168,6 +180,12 @@ console.log(active)
             null    
             }
 
+
+            <ConfirmDeleteClientModal
+                handleClose={handleClose} 
+                open={open}
+                clientName={clientName}
+            />
         </>
     )
 }
