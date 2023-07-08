@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Typography, Accordion, AccordionSummary, AccordionDetails, Box, IconButton, Tooltip, TextField, Button } from "@mui/material";
+import { Typography, Accordion, AccordionSummary, Box, IconButton, Tooltip, TextField, Button, Popover } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Context } from "../App";
 import InterventionSelect from "./InterventionSelect";
 import InterventionInGoal from "./InterventionInGoal";
@@ -12,11 +13,23 @@ export default function SingleGoal({goal, interventions, setInterventions}){
     const [showUpdate, setShowUpdate] = useState(false)
     const [goalName, setGoalName] = useState(goal.goal_name)
     const [goalInterventions, setGoalInterventions] = useState(null)
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
 
     const toggleShowUpdate = ()=>{
         setShowUpdate(!showUpdate)
     }
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+    const handleClose = () => {
+    setAnchorEl(null);
+    };
+    
+    const open = Boolean(anchorEl);
+    const popoverID = open ? 'simple-popover' : undefined;
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -82,8 +95,39 @@ export default function SingleGoal({goal, interventions, setInterventions}){
                             <Typography variant="h6" color='textSecondary'>{goalName}</Typography>} 
                     </Box>
                     <Tooltip title="Edit">
-                        <IconButton onClick={toggleShowUpdate}><EditNoteIcon sx={{mr: 2, ml: 2}}/></IconButton>
+                        <IconButton onClick={toggleShowUpdate}><EditNoteIcon/></IconButton>
                     </Tooltip>
+                    <Tooltip>
+                        <IconButton onClick={handleClick} aria-describedby={popoverID}><DeleteIcon/></IconButton>
+                    </Tooltip>
+                    <Popover
+                        id={popoverID}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                        >
+                            <Box sx={{flexWrap: 'wrap', justifyContent: 'center', maxWidth:150}}>
+                                <Box sx={{m:1}}>
+                                    <Typography>Delete this goal? </Typography>
+                                    <Button
+                                    variant="contained"
+                                    sx={{mt:0.5, ml: 1.2}}
+                                    color="error"
+                                    onClick={()=>{}}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Box>
+                            </Box>
+                    </Popover>
                 </AccordionSummary>
                 <Box>
                    
