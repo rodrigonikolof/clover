@@ -90,7 +90,7 @@ export default function SingleClient(){
             </Box>
 
             
-                    <Box sx={{display:{md:'flex',sm:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
+                    <Box sx={{display:{md:'flex', sm:'flex', xs:'block'}, justifyContent: 'center', mt:3}}>
                         <Button  sx={{ color:'green'}} onClick={()=>setEdit(!edit)}>
                                 Edit  
                         </Button>
@@ -106,7 +106,7 @@ export default function SingleClient(){
                         <Box sx={{display: 'block', maxWidth:500}}>
                             {!edit?  
                             <>
-                            <Paper sx={{backgroundColor:'#c9e6b3'}}>
+                            <Paper sx={{backgroundColor:'#c9e6b3', minWidth:300, m:1}}>
                                 <Box sx={{p:2}}> 
                                     <Typography variant="h6" sx={{color: "#2a4d17", fontWeight:'bold'}}> Name </Typography> 
                                     <Typography variant="h6" sx={{color:"#2a4d17"}}>{clientName}</Typography>
