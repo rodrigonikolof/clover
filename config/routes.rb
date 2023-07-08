@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       
       resources :clients, only: [:index, :create, :show, :update, :destroy]
       resources :interventions, only: [:index, :update, :destroy, :create]
-      resources :goals, only: [:index, :show, :update, :create]
+      resources :goals, only: [:index, :show, :update, :create, :destroy]
       resources :goal_intervention, only: [:show, :create, :destroy, :update]
 
      

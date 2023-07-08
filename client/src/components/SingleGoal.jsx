@@ -72,7 +72,6 @@ export default function SingleGoal({goal, interventions, setInterventions, setGo
         headers: {Authorization : `Bearer ${token}`}
     })
     setGoals(goals.filter(goal => goal.id != id))
-    console.log(id)
    }
 
 

@@ -36,6 +36,17 @@ class Api::V1::GoalsController < ApplicationController
         end
     end
 
+    def destroy
+        @goal = Goal.find(params[:id])
+
+        if @goal 
+            @goal.destroy
+            render json: {ok: 'Goal deleted'}, status: :ok
+        else
+            render json: {error: 'Unable to delete goal'}
+        end
+    end
+
     private
 
     def goal_params
