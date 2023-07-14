@@ -1,24 +1,14 @@
-# README
+# clover
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h2>What is it?</h2>
+Clover is the final project for my software engineering course. </br> 
+The application is being made as per requirements established by a psycologist (my wife) and aims to streamline goal management for each client. 
 
-Things you may want to cover:
+<h2>What technologies does it use?</h2>
+<ul>
+  <li>Javascript / React frontend </li>
+  <li>Ruby / Rails backend</li>
+</ul>
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h2>Where is it up to?</h2>
+The initial phase of Clover is nearly complete and will be deployed soon :) 
